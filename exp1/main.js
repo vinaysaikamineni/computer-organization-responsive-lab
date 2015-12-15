@@ -1,3 +1,11 @@
+	/*
+		Name:Integer Arithmetic
+		Author: Giritheja
+		Description:The experiment does addition of two 4-bit or 5-bit
+		binary numbers.The results are expressed in terms of 1's complement,
+		2's complement, signed, unsigned and binary format.
+	*/
+	//This will set variables for 4-bit table
 	var binary=[];0
 	var onescomp=[];
 	var twoscomp=[];
@@ -13,6 +21,7 @@
 	var oneshigh=7;
 	var oneslow=-7;
 	var bit=4;
+	//This will set variables for 5-bit table
 	if (window.location.href.indexOf("5bit") > -1){	
 	unsignedhigh=31;
 	signedlow=-15;
@@ -22,9 +31,9 @@
 	oneshigh=15;
 	oneslow=-15;
 	bit=5;
-	}//$('#4bittable tr').each(function() {
-     //binary.push($(this).find("td:first").html());    
- 		//})
+	}
+	//This function resets all the variables and sets the background of
+	//the rows to original color.
 function clearall(){
 $('#bittable tr').each(function() {
 		$(this).context.cells[0].style.backgroundColor='';
@@ -56,10 +65,12 @@ $('#bittable tr').each(function() {
 		})
 	trig=0;
 }
+//This function changes the color of the selected row in the table.
 function changeColor(o){
 	if(trig>0){
 		clearall();
 	}
+     	//This will make sure that only two of the rows are selected
         if(selected.length==2) {
     		selected[0].style.backgroundColor='';
     		selected.shift();
@@ -80,22 +91,22 @@ function changeColor(o){
 			selected[i].style.backgroundColor='#FA8072';
 		}
     };
+    //This function converts decimal value to binary value and appends zero 
+    //at the start if required.
     function decbin(value){
     	var out=value.toString(2);
-    	console.log(out.length<bit);
-    	console.log(out);
     	if(out.length<bit){
     		for(var i=out.length;i<bit;i++){
     			out=0+out;
     		}
     		
     	}
-    	console.log(out);
     		return out;
     }
-    
-    //document.getElementById('add').onclick=add();
-	function add(){
+    /* This function adds the signed numbers, unsigned numbers, binary, 1scomplement, 
+    2scomplement and sets result row of the table to green(if within the range of table)
+    or shows overflow.*/
+    function add(){
 		var unsigned1,unsigned2;
 		unsignedsum=parseInt(unsigned[0],10)+parseInt(unsigned[1],10);
 		signedsum=parseInt(signed[0],10)+parseInt(signed[1],10);

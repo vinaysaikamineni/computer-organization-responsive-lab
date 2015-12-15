@@ -1,0 +1,21 @@
+<html><head><title>Floating Point Numbers Representation Simulator</title></head>
+<body>
+<h2>Consequence #1: Values are unevenly spaced</h2>
+<p>-> Imagine we only had 6 bits for each floating-point number (1 sign, 3 mantissa, 2 exponent)<br/>
+
+-> Means less absolute precision for numbers with larger magnitudes<br/>
+
+-> That is why the numbers are more densed near the zero as compared to far away from the number line.
+</p>
+<img src="images/uneven.png" style="float:right"/>
+<h2>Consequence #2: Roundoff errors</h2>
+<p>- > Our system can represent 6, and it can represent 0.25, but not 5.75
+<br/>
+ - > So 6 - 0.25 is 6, not 5.75 and if 6 - 0.25 - 0.25 - 0.25 - 0.25 is evaluated left to right, the answer is still 6
+<br/>
+ - > This is not random Happens exactly the same way every time
+</p>
+<a href="help.html">Back</a>
+<a href="help3.html">Next</a>
+</body>
+</html>

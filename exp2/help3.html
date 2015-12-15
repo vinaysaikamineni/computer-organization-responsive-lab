@@ -1,0 +1,36 @@
+<html><head><title>Floating Point Numbers Representation Simulator</title></head>
+<body><div style="float:left"><table border="0"><tr><td>
+	<h1>Normalised Representation</h1>
+	<p>In order to represent maximum possible numbers in specified number of bits, <br/>we use normalized representation. In IEEE format we use normalized <br/>representation for all cases when exponent is not equal to ...0000 or 111..11</p><br/>
+	<h2>Exponent coded as biased value</h2>
+	<p>E = Exp - Bias<br/>
+	   Exp : unsigned value denoted by exp<br/>
+	   Bias : Bias value<br/>
+	   In general : Bias = 2^(e-1)-1, where e is number of exponent bits.
+	</p>
+	<h2>Significand coded with implied leading 1</h2>
+	<p>
+		M = 1.xxx...*2
+		xxx...x:bits of frac
+		<br/>Minimum when 000...0 (M = 1.0)<br/>
+		Maximum when 111...1 (M = 2.0 - )
+	</p>
+	</div></td><td style="float:right">
+	<div style="float:right">
+	<h1>Denormalized Representation</h1>
+	<p>As zero cannot be represented using normalized representation ,<br/> we use denormalized representation for zero and numbers close to zero<br/> in order to have more accurate results.<br/>
+	In IEEE formay denormalized representation is using only when exp = 000...0<br/>
+	Exponent value E = -Bias + 1<br/>
+	Significand value M = 0.xxx...*2<br/>
+	xxx...x:bits of frac</p>
+	<h3>Cases</h3>
+	<p>exp=000...0, frac=000...0
+	Represents value 0
+	Note that have distinct values +0 and -0<br/>
+	exp = 000...0, frac = 000...0<br/>
+	Numbers very close to 0.0 Lose precision as get smaller "Gradual underflow"</p></div></td></tr></table>
+	<img src="images/normalized.jpg"/ style="float:center">
+	<a href="help2.html">Back</a>
+	<a href="help4.html">Next</a>
+</body>
+</html>

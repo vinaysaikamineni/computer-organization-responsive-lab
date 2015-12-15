@@ -1,0 +1,266 @@
+<html>
+	<head><title>Integer Arithmetic</title></head>
+	<link rel="stylesheet" href="main.css">
+    <body>
+	<h1>Integer Arithmetic</h1>
+    <div id="navbar">
+    <ul>
+	<li><input name="Add" value="Add" type="button" id="add" onclick="add();" class="button"></input>
+	<input name="Reset" value="Reset" type="button" id="add" onclick="clearall();" class="button"></input>
+	</li>
+    <li>
+    <a href="help.html" type="button" id="add" onclick="clearal();" class="button">help</a>
+	<a href="main.html" type="button" id="add" onclick="clearal();" class="button">4-bit</a>
+    </li>
+    </ul>
+    </div>
+    <div id="bit">
+		<table border="1" cellspacing="1" id="bittable">
+    <tr>
+        <th>Binary Rep</th>
+        <th>2's COMP</th>
+        <th>1's COMP</th>
+        <th>Unsigned</th>
+        <th>Signed</th>
+    </tr>
+    <tr onclick="changeColor(this)" value="0">
+        <td>00000</td>
+        <td>0</td>
+        <td>+0</td>
+        <td>0</td>
+        <td>+0</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00001</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00010</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00011</td>
+        <td>3</td>
+        <td>3</td>
+        <td>3</td>
+        <td>3</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00100</td>
+        <td>4</td>
+        <td>4</td>
+        <td>4</td>
+        <td>4</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00101</td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00110</td>
+        <td>6</td>
+        <td>6</td>
+        <td>6</td>
+        <td>6</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>00111</td>
+        <td>7</td>
+        <td>7</td>
+        <td>7</td>
+        <td>7</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>01000</td>
+        <td>8</td>
+        <td>8</td>
+        <td>8</td>
+        <td>8</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01001</td>
+        <td>9</td>
+        <td>9</td>
+        <td>9</td>
+        <td>9</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01010</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01011</td>
+        <td>11</td>
+        <td>11</td>
+        <td>11</td>
+        <td>11</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01100</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01101</td>
+        <td>13</td>
+        <td>13</td>
+        <td>13</td>
+        <td>13</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01110</td>
+        <td>14</td>
+        <td>14</td>
+        <td>14</td>
+        <td>14</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>01111</td>
+        <td>15</td>
+        <td>15</td>
+        <td>15</td>
+        <td>15</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>10000</td>
+        <td>-16</td>
+        <td>-15</td>
+        <td>16</td>
+        <td>-0</td>
+    </tr>
+    <tr onclick="changeColor(this)" >
+        <td>10001</td>
+        <td>-15</td>
+        <td>-14</td>
+        <td>17</td>
+        <td>-1</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>10010</td>
+        <td>-14</td>
+        <td>-13</td>
+        <td>18</td>
+        <td>-2</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>10011</td>
+        <td>-13</td>
+        <td>-12</td>
+        <td>19</td>
+        <td>-3</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>10100</td>
+        <td>-12</td>
+        <td>-11</td>
+        <td>20</td>
+        <td>-4</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>10101</td>
+        <td>-11</td>
+        <td>-10</td>
+        <td>21</td>
+        <td>-5</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>10110</td>
+        <td>-10</td>
+        <td>-9</td>
+        <td>22</td>
+        <td>-6</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>10111</td>
+        <td>-9</td>
+        <td>-8</td>
+        <td>23</td>
+        <td>-7</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11000</td>
+        <td>-8</td>
+        <td>-7</td>
+        <td>24</td>
+        <td>-8</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11001</td>
+        <td>-7</td>
+        <td>-6</td>
+        <td>25</td>
+        <td>-9</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11010</td>
+        <td>-6</td>
+        <td>-5</td>
+        <td>26</td>
+        <td>-10</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11011</td>
+        <td>-5</td>
+        <td>-4</td>
+        <td>27</td>
+        <td>-11</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11100</td>
+        <td>-4</td>
+        <td>-3</td>
+        <td>28</td>
+        <td>-12</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11101</td>
+        <td>-3</td>
+        <td>-2</td>
+        <td>29</td>
+        <td>-13</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11110</td>
+        <td>-2</td>
+        <td>-1</td>
+        <td>30</td>
+        <td>-14</td>
+    </tr>
+    <tr onclick="changeColor(this)">
+        <td>11111</td>
+        <td>-1</td>
+        <td>-0</td>
+        <td>31</td>
+        <td>-15</td>
+    </tr>
+</table>
+</div>
+<div id="result">
+<h2>Results</h2>
+<table id="resulttable" border="2" cellspacing="1">
+	<tr><td>Binary Rep</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>2's comp</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>1's comp</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>Unsigned</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>Signed</td><td></td><td style="display:none">overflow</td></tr>
+</table>
+</div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="main.js"></script>
+	
+</html>

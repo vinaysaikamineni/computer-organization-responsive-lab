@@ -1,0 +1,149 @@
+<html>
+	<head><title>Integer Arithmetic</title></head>
+	<link rel="stylesheet" href="main.css">
+	<body>
+	<h1>Integer Arithmetic</h1>
+	<div id="navbar">
+	<input name="Add" value="Add" type="button" id="add" onclick="add();" class="button"></input>
+	<input name="Reset" value="Reset" type="button" id="add" onclick="clearall();" class="button"></input>
+	<a href="5bit.html" type="button" id="add" onclick="clearal();" class="button">5-bit</a>
+	<a href="help.html" type="button" id="add" onclick="clearal();" class="button">help</a>
+	</div>
+	<div id="bit">
+		<table border="1" cellspacing="1" id="bittable">
+    <tr>
+        <th>Binary Rep</th>
+        <th>2's COMP</th>
+        <th>1's COMP</th>
+        <th>Unsigned</th>
+        <th>Signed</th>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr0" value="0">
+        <td>0000</td>
+        <td>0</td>
+        <td>+0</td>
+        <td>0</td>
+        <td>+0</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr1" value="1">
+        <td>0001</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr2" value="2">
+        <td>0010</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>0011</td>
+        <td>3</td>
+        <td>3</td>
+        <td>3</td>
+        <td>3</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr4" value="4">
+        <td>0100</td>
+        <td>4</td>
+        <td>4</td>
+        <td>4</td>
+        <td>4</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr5" value="5">
+        <td>0101</td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr6" value="6">
+        <td>0110</td>
+        <td>6</td>
+        <td>6</td>
+        <td>6</td>
+        <td>6</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr7" value="7">
+        <td>0111</td>
+        <td>7</td>
+        <td>7</td>
+        <td>7</td>
+        <td>7</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr8" value="8">
+        <td>1000</td>
+        <td>-8</td>
+        <td>-7</td>
+        <td>8</td>
+        <td>-0</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1001</td>
+        <td>-7</td>
+        <td>-6</td>
+        <td>9</td>
+        <td>-1</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1010</td>
+        <td>-6</td>
+        <td>-5</td>
+        <td>10</td>
+        <td>-2</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1011</td>
+        <td>-5</td>
+        <td>-4</td>
+        <td>11</td>
+        <td>-3</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1100</td>
+        <td>-4</td>
+        <td>-3</td>
+        <td>12</td>
+        <td>-4</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1101</td>
+        <td>-3</td>
+        <td>-2</td>
+        <td>13</td>
+        <td>-5</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1110</td>
+        <td>-2</td>
+        <td>-1</td>
+        <td>14</td>
+        <td>-6</td>
+    </tr>
+    <tr onclick="changeColor(this)" id="tr3" value="3">
+        <td>1111</td>
+        <td>-1</td>
+        <td>-0</td>
+        <td>15</td>
+        <td>-7</td>
+    </tr>
+</table>
+</div>
+<div id="result">
+<h2>Results</h2>
+<table border="2" cellspacing="1" id="resulttable">	
+	<tr><td>Binary Rep</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>2's comp</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>1's comp</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>Unsigned</td><td></td><td style="display:none">overflow</td></tr>
+	<tr><td>Signed</td><td></td><td style="display:none">overflow</td></tr>
+</table>
+</div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="main.js"></script>
+	
+</html>

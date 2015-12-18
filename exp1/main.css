@@ -1,4 +1,13 @@
-body{
+table{
+  max-height: 800px;
+}
+#navbar, #result{
+  margin-left: 120px;
+}
+#bit{
+ margin-left: 120px; 
+}
+/*body{
 	width: 100% !important;
     margin: 0 !important;
     border: none;
@@ -136,3 +145,4 @@ background-image: -webkit--gradient(linear,left top,left bottom,color-stop(0,#4e
 background: #328fe6;
 margin:5px 10px 10px 10px;
 }
+*/

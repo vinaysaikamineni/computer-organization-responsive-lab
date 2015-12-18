@@ -1,16 +1,34 @@
-<html>
+<html><meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 	<head><title>Integer Arithmetic</title></head>
-	<link rel="stylesheet" href="main.css">
+	 <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
 	<body>
-	<h1>Integer Arithmetic</h1>
-	<div id="navbar">
-	<input name="Add" value="Add" type="button" id="add" onclick="add();" class="button"></input>
-	<input name="Reset" value="Reset" type="button" id="add" onclick="clearall();" class="button"></input>
-	<a href="5bit.html" type="button" id="add" onclick="clearal();" class="button">5-bit</a>
-	<a href="help.html" type="button" id="add" onclick="clearal();" class="button">help</a>
+	<div class="page-header"><h1 style="text-align:center">Integer Arithmetic</h1></div>
+	<span class="col-md-4">
+    <div id="navbar" class=".btn-group-vertical">
+	 <input name="Add" value="Add" type="button" id="add" onclick="add();" class="btn btn-primary"></input><br/>
+    <input name="Reset" value="Reset" type="button" id="add" onclick="clearall();" class="btn btn-primary"></input><br/>
+	<a href="5bit.html" type="button" id="add" onclick="clearal();" class="btn btn-primary">5-bit</a><br/>
 	</div>
-	<div id="bit">
-		<table border="1" cellspacing="1" id="bittable">
+    <div id="result">
+<h2>Results</h2>
+<table border="2" cellspacing="1" id="resulttable"> 
+    <tr><td>Binary Rep</td><td></td><td style="display:none">overflow</td></tr>
+    <tr><td>2's comp</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
+    <tr><td>1's comp</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
+    <tr><td>Unsigned</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
+    <tr><td>Signed</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
+</table>
+</div>
+
+    </span>
+    <span class="col-md-8">
+        <span style="float:right;margin-right:200px">
+        <a href="help.html" type="button" id="add" onclick="clearal();" class="btn btn-danger">help</a><br/></span>
+    <div id="bit">
+        <table border="1" cellspacing="1" id="bittable" class="table-striped">
     <tr>
         <th>Binary Rep</th>
         <th>2's COMP</th>
@@ -132,18 +150,12 @@
     </tr>
 </table>
 </div>
-<div id="result">
-<h2>Results</h2>
-<table border="2" cellspacing="1" id="resulttable">	
-	<tr><td>Binary Rep</td><td></td><td style="display:none">overflow</td></tr>
-	<tr><td>2's comp</td><td></td><td style="display:none">overflow</td></tr>
-	<tr><td>1's comp</td><td></td><td style="display:none">overflow</td></tr>
-	<tr><td>Unsigned</td><td></td><td style="display:none">overflow</td></tr>
-	<tr><td>Signed</td><td></td><td style="display:none">overflow</td></tr>
-</table>
-</div>
+</span>
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="main.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	<script src="main.js"></script>
 	
 </html>

@@ -1,5 +1,32 @@
-<html><head><title>Floating Point Numbers Representation Simulator</title></head>
-<body><h1>CONVERTING A DECIMAL NUMBER TO FLOATING POINT NUMBER</h1>
+<html><meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<head><title>Floating Point Numbers Representation Simulator</title> <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="main.css"/>
+</head>
+
+<body>
+<div class="page-header" style="margin-left:30px">
+<h3>Floating Point Numbers Representation Simulator</h3>
+</div><div id="navbar" class="list-group">
+<span class="col-md-2">
+<a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+<a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+<a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+<ul>
+	<li>Floating Point Numbers Introduction And Format</li>
+	<li>Normalized And Denormalized representation</li>
+	<li>Decimal To Floating Conversion With Example</li>
+	<li>
+		A quick guide on Using The Simulator
+	</li>
+	<li>Click Reset To Clear And Re-enter The Values</li>
+</ul>
+</span>
+</div>
+<span class="col-md-10">
+<h4>CONVERTING A DECIMAL NUMBER TO FLOATING POINT NUMBER</h4>
 <p><ul><li>
 	Convert the absolute value of the number to binary, perhaps with a fractional part after the binary point. This can be done by converting the integral and fractional parts separately.
 </li>
@@ -21,8 +48,10 @@
 </li>
 </ul>
 </p>
-<h3>EXAMPLE - CONVERT 2.625 TO 8-BIT FLOATING POINT FORMAT.</h3>
-<p>
+<h4>EXAMPLE - CONVERT 2.625 TO 8-BIT FLOATING POINT FORMAT.</h4>
+<div calss="container">
+<div class="jumbotron" style="padding:20px">
+<p style="text-align:centre">
 	<ul><li>
 		A.The integral part is easy, 2<sub>10</sub> = 10<sub>2</sub>. For the fractional part:<br/>
 		0.625 X 2 = 1.25 [1]  Generate 1 and continue with the rest.<br/>
@@ -48,5 +77,8 @@
 </ul>
 <p>The result is 0 100 0101. Represented as hex, that is 45<sub>16</sub>.</p>
 </p>
-<a href ="help3.html">Back</a>
+</div>
+</div>
+<a href ="help3.html" type="button" class="btn btn-primary">Back</a>
+</span>
 </body></html>

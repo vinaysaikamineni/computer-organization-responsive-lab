@@ -112,6 +112,9 @@ function changeColor(o){
 		signedsum=parseInt(signed[0],10)+parseInt(signed[1],10);
 		twoscompsum=parseInt(twoscomp[0],10)+parseInt(twoscomp[1],10);
 		onescompsum=parseInt(onescomp[0],10)+parseInt(onescomp[1],10);
+		if (isNaN(unsignedsum)){
+			return;
+		}
 		if(unsignedsum>unsignedhigh){
 		document.getElementById('resulttable').rows[0].cells[2].style.display='block';		
 		document.getElementById('resulttable').rows[3].cells[2].style.display='block';

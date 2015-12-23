@@ -173,14 +173,14 @@ $('#resulttable tr').each(function() {
  	drawarrowdenorm(indexdenorm); 	
  	$('#resulttable tr').each(function() {
   		if(parseFloat($(this).find("td:nth-child(5)").html())*1000==denormalized[indexdenorm]){
-  			$(this).find("td:nth-child(5)").context.cells[4].style.backgroundColor='blue';
+  			$(this).find("td:nth-child(5)").context.cells[4].style.backgroundColor='rgb(114, 114, 207)';
   		}
   			
   		if(parseFloat($(this).find("td:nth-child(3)").html())*1000==normalized[indexnorm]){
-  			$(this).find("td:nth-child(3)").context.cells[2].style.backgroundColor='red';
-  			$(this).find("td:nth-child(2)").context.cells[1].style.backgroundColor='red';
-  			$(this).find("td:nth-child(1)").context.cells[0].style.backgroundColor='red';
-  			$(this).find("td:nth-child(4)").context.cells[3].style.backgroundColor='red';		
+  			$(this).find("td:nth-child(3)").context.cells[2].style.backgroundColor='rgb(183, 56, 56)';
+  			$(this).find("td:nth-child(2)").context.cells[1].style.backgroundColor='rgb(183, 56, 56)';
+  			$(this).find("td:nth-child(1)").context.cells[0].style.backgroundColor='rgb(183, 56, 56)';
+  			$(this).find("td:nth-child(4)").context.cells[3].style.backgroundColor='rgb(183, 56, 56)';		
   			
   		}	
   	})

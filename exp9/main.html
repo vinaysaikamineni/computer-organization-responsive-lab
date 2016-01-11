@@ -78,7 +78,7 @@
 		<td><span class="supscript">r31</span><input type="number" value="0" style="width:50px"/></td>
 	</tr>
 	</table>
-	<input type="submit" value="update"/>
+	<input type="submit" value="update" onclick="updatereg();" />
 <!--<video id ="video" width="400" height="400" autoplay>
   <source id="process" src="frames/frame1.mp4" type="video/mp4">
   Your browser does not support the video tag.
@@ -109,6 +109,22 @@
 	<td>5:0</td>
 	</tr>	
 </table>
+<table border="2" id="result">
+<header>Control Signals</header>
+	<tr><td>RegDst</td><td>1</td></tr>
+	<tr><td>RegWr</td><td>1</td></tr>
+	<tr><td>ExtOp</td><td>0</td></tr>
+	<tr><td>ALUSrc</td><td>0</td></tr>
+	<tr><td>ALUctr</td><td id="aluctr"></td></tr>
+	<tr><td>MemWr</td><td>0</td></tr>
+	<tr><td>MemtoReg</td><td>0</td></tr>
+	<tr><td>Branch</td><td>0</td></tr>
+	<tr><td>Jump</td><td>0</td></tr>
+	<tr><td>Clk</td><td>0</td></tr>
+</table>
+<div>
+	<p id="instructions">
+</div>
 <!--<img id="cpu" src="frames/cpu1.jpg" />-->
 </div>
 </body>

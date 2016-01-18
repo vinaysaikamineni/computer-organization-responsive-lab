@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="main.html">Home</a></li>
         <li><a href="instruction.html">Instruction Set</a></li>
-        <li><a href="Data.html">Data Memory</a></li>
+        <li><a href="data.html">Data Memory</a></li>
         <li><a href="create.html">Create Your Own</a></li>
         <li><a href="help.html">Help</a></li>
       </ul>
@@ -79,11 +79,11 @@
 	</tr>
 	</table>
 	<input type="submit" value="update" onclick="updatereg();" />
-<!--<video id ="video" width="400" height="400" autoplay>
+<video id ="video" width="400" height="400" autoplay>
   <source id="process" src="frames/frame1.mp4" type="video/mp4">
   Your browser does not support the video tag.
-</video>-->
-<table border="2" id="result">
+</video>
+<table border="2" id="resultr" style="display:none">
 	<tr>
 	<td>Opcode</td>
 	<td>Rs</td>
@@ -109,7 +109,27 @@
 	<td>5:0</td>
 	</tr>	
 </table>
-<table border="2" id="result">
+<table border="2" id="resulti" style="display:none">
+	<tr>
+	<td>Opcode</td>
+	<td>Rs</td>
+	<td>Rt</td>
+	<td>Address</td>
+	</tr>
+	<tr>
+	<td>00100</td>
+	<td></td>
+	<td></td>
+	<td></td>	
+	</tr>
+	<tr>
+	<td>31:26</td>	
+	<td>25:21</td>
+	<td>20:16</td>
+	<td>15:0</td>
+	</tr>	
+</table>
+<table border="2"><!--needs little fixing here-->
 <header>Control Signals</header>
 	<tr><td>RegDst</td><td>1</td></tr>
 	<tr><td>RegWr</td><td>1</td></tr>

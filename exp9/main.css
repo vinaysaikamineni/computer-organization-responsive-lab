@@ -14,3 +14,11 @@
     vertical-align:middle;
     position:relative;
 }
+#datamemory td{
+	border:1px solid #CCCCCC;
+    width:45px;
+    height:65px;
+    text-align:center;
+    vertical-align:middle;
+    position:relative;
+}

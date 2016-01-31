@@ -129,17 +129,31 @@
 	<td>15:0</td>
 	</tr>	
 </table>
+<table border="2" id="resultj" style="display:none">
+	<tr>
+	<td>Opcode</td>
+	<td>Address</td>
+	</tr>
+	<tr>
+	<td>00001</td>
+	<td></td>	
+	</tr>
+	<tr>
+	<td>31:26</td>	
+	<td>25:0</td>
+	</tr>	
+</table>
 <table border="2"><!--needs little fixing here-->
 <header>Control Signals</header>
-	<tr><td>RegDst</td><td>1</td></tr>
-	<tr><td>RegWr</td><td>1</td></tr>
-	<tr><td>ExtOp</td><td>0</td></tr>
-	<tr><td>ALUSrc</td><td>0</td></tr>
+	<tr><td>RegDst</td><td id="RegDst">1</td></tr>
+	<tr><td>RegWr</td><td id="RegWr">1</td></tr>
+	<tr><td>ExtOp</td><td id="ExtOp">0</td></tr>
+	<tr><td>ALUSrc</td><td id="ALUSrc">0</td></tr>
 	<tr><td>ALUctr</td><td id="aluctr"></td></tr>
 	<tr><td>MemWr</td><td>0</td></tr>
 	<tr><td>MemtoReg</td><td>0</td></tr>
 	<tr><td>Branch</td><td>0</td></tr>
-	<tr><td>Jump</td><td>0</td></tr>
+	<tr><td>Jump</td><td  id="jump">0</td></tr>
 	<tr><td>Clk</td><td>0</td></tr>
 </table>
 <div>

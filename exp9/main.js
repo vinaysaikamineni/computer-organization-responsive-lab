@@ -42,29 +42,50 @@ function change () {
 		} else {
 			if (instructionCounter==4) {
 				 	text = 'Instruction decoded.'+ instr +'-Type Instruction <br/> Rs = '+parseInt(Rs,2);
+					if(instructionType=='J') {
+					text = text + '<br/> Rd = ' + 0;
+					text = text + '<br/>Rt = ' + 0;
+					} else {
 					text = text + '<br/> Rd = ' + parseInt(Rd,2);
 					text = text + '<br/>Rt = ' + parseInt(Rt,2);
+					}
 					text = text + '<br/> Imm = ' + imm//Need to change this depending on the input.
 					instruction.innerHTML=text;
+					}
 			}
 			if(instructionCounter==6) {
 					text = 'Instruction Execute.<br/>';
-					text = text + '<br/>BusA = ' + r[parseInt(Rs,2)];
-					text = text + '<br/>BusB = ' + r[parseInt(Rt,2)];
+					if(instructionType=='J'){
+						text = text + '<br/>BusA = ' + 0;
+						text = text + '<br/>BusB = ' + 0;
+					} else {
+						text = text + '<br/>BusA = ' + r[parseInt(Rs,2)];
+						text = text + '<br/>BusB = ' + r[parseInt(Rt,2)];
+					}
 					if(instructionType=='R')
-					text = text + '<br/>Rw =' + parseInt(Rd,2);
+						text = text + '<br/>Rw =' + parseInt(Rd,2);
 					if(instructionType=='I')
-					text = text + '<br/>Rw =' + parseInt(Rt,2);text = text + '<br/>Extender = ' + imm;//Need to change this.
+						text = text + '<br/>Rw =' + parseInt(Rt,2);
+					if(instructionType=='J')
+						text = text + '<br/>Rw =' + 0;	
+					text = text + '<br/>Extender = ' + imm;//Need to change this.
 					instruction.innerHTML=text;
 			}
 			if(instructionCounter==7) {
 					text = 'ALU  Operation.<br/>';
-					text = text + '<br/>Operation = ' + instr;
-					text = text + '<br/>ALUin1 = ' + r[parseInt(Rs,2)];
+					if(instructionType=='J'){
+						text = text + '<br/>Operation = ' + 'add';
+						text = text + '<br/>ALUin1 = ' + '0';
+					} else {
+						text = text + '<br/>Operation = ' + instr;
+						text = text + '<br/>ALUin1 = ' + r[parseInt(Rs,2)];
+					}
 					if(instructionType=='R')
-					text = text + '<br/>ALUin2 = ' + r[parseInt(Rt,2)]; 
+						text = text + '<br/>ALUin2 = ' + r[parseInt(Rt,2)]; 
 					if(instructionType=='I')
-					text = text + '<br/>ALUin2 = ' + imm; 
+						text = text + '<br/>ALUin2 = ' + imm; 
+					if(instructionType=='J')
+						text = text + '<br/>ALUin2 = ' + '0'; 
 					instruction.innerHTML=text;
 			}
 			if(instructionCounter==8) {
@@ -77,39 +98,49 @@ function change () {
 			if(instructionCounter==9) {
 					text = 'Memory Write.<br/>';
 					if(instructionType=='R')
-					text = text + '<br/>DataIn = ' + r[parseInt(Rt,2)];
+						text = text + '<br/>DataIn = ' + r[parseInt(Rt,2)];
 					if(instructionType=='I')
-					text = text + '<br/>DataIn = ' + r[parseInt(Rs,2)];
+						text = text + '<br/>DataIn = ' + r[parseInt(Rs,2)];
+					if(instructionType=='J'){
+						text = text + '<br/>DataIn = ' + 0;
+						text = text + '<br/>Mem Address = ' + 0;
+						text = text + '<br/>BusW = ' + 0;
+					} else {
 					text = text + '<br/>Mem Address = ' + sum;
 					text = text + '<br/>BusW = ' + sum;
+					}
 					if(instructionType=='R')
 					text = text + '<br/>Rw =' + parseInt(Rd,2);
 					if(instructionType=='I')
 					text = text + '<br/>Rw =' + parseInt(Rt,2);
+					if(instructionType=='I')
+					text = text + '<br/>Rw =' + 0;
 					instruction.innerHTML=text;
-					r[parseInt(Rd,2)]=sum;
-					var index=0;
-					$('#regmemory').find('td').each(function(){
 					if(instructionType=='R'){
-					if(index==parseInt(Rd,2))
-					$(this).find("input").val(sum);
-					}
+						r[parseInt(Rd,2)]=sum;
+						var index=0;
+						$('#regmemory').find('td').each(function(){
+							if(instructionType=='R'){
+							if(index==parseInt(Rd,2))
+							$(this).find("input").val(sum);
+						}
+					 })
+				}
 					if(instructionType=='I'){
-					if(instr!='beq'){
-					if(instr!='store'){
-					if(index==parseInt(Rt,2))
-					$(this).find("input").val(sum);	
-					}else{
-					if(index==sum)
-					$(this).find("input").val(r[parseInt(Rt,2)]);		
-					}
-					}
+						if(instr!='beq'){
+							if(instr!='store'){
+								if(index==parseInt(Rt,2))
+									$(this).find("input").val(sum);	
+							} else {
+								if(index==sum)
+								$(this).find("input").val(r[parseInt(Rt,2)]);		
+								}
+						}
 					}
 					index++;
-					});
+					};
 	
-			}
-		}
+			
 		video.load();
 		video.play();
 		imgnumber++;
@@ -142,11 +173,21 @@ function change () {
 			sum=parseInt(r[parseInt(Rs,2)])-parseInt(r[parseInt(Rt,2)]);
 			}
 			document.getElementById('aluctr').innerHTML = instr;
+			document.getElementById('RegDst').innerHTML	= '1';
+			document.getElementById('RegWr').innerHTML = '1';
+			document.getElementById('ExtOp').innerHTML = '0';
+			document.getElementById('ALUSrc').innerHTML = '0';	
+			document.getElementById('jump').innerHTML = '0';
 		}
 
 		if(instructionType=='I'){
+			document.getElementById('aluctr').innerHTML = instr;
+			document.getElementById('RegDst').innerHTML	= '0';
+			document.getElementById('RegWr').innerHTML = '1';
+			document.getElementById('ExtOp').innerHTML = '1';
+			document.getElementById('ALUSrc').innerHTML = '1';
+			document.getElementById('jump').innerHTML = '0';
 			Rd = 0;
-			var immbin;
 			var result = document.getElementById('resulti');
 			console.log(result);
 			result.style.display="block";
@@ -188,6 +229,22 @@ function change () {
 				immbin="0"+immbin;
 			}
 			result.rows[1].cells[3].innerHTML=immbin;
+		}
+		if(instructionType=='J') {
+			document.getElementById('aluctr').innerHTML = 'add';
+			document.getElementById('RegDst').innerHTML	= '0';
+			document.getElementById('RegWr').innerHTML = '0';
+			document.getElementById('ExtOp').innerHTML = '0';
+			document.getElementById('ALUSrc').innerHTML = '0';
+			document.getElementById('jump').innerHTML = '1';
+			sum = 0;
+			var result = document.getElementById('resultj');
+			result.style.display="block";
+			var immbin =imm.toString(2);
+			for(var i=immbin.length;i<25;i++) {
+				immbin="0"+immbin;
+			}
+			result.rows[1].cells[1].innerHTML=immbin;
 		}			
 	}
 function load() {
@@ -303,7 +360,7 @@ function load() {
 
 				if(instructionType=='J') {
 					if(index==1){
-						imm=inputs[index];
+						imm=parseInt(inputs[index]);
 					}
 				}
 		}

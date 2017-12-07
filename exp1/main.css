@@ -1,23 +1,24 @@
-table{
-  max-height: 800px;
-  text-align: center;
+table {
+    max-height: 800px;
+    text-align: center;
 }
-#navbar, #result{
-  margin-left: 120px;
+#navbar,
+#result {
+    margin-left: 120px;
 }
-#bit{
- margin-left: 120px; 
+#bit {
+    margin-left: 120px;
 }
-th{
-  padding: 12px;
-  color: #330000;
+th {
+    padding: 12px;
+    color: #330000;
 }
-td{
-  padding: 1px;
+td {
+    padding: 1px;
 }
-#resulttable td{
- color: #330000; 
- padding: 5px;
+#resulttable td {
+    color: #330000;
+    padding: 5px;
 }
 /*body{
 	width: 100% !important;
@@ -102,7 +103,7 @@ position: absolute;
     color: #242B2C;
     width: 20%;
     height: 14.5em;
-    display: block;	
+    display: block;
     margin-left: 5%;
 }
 #result table {

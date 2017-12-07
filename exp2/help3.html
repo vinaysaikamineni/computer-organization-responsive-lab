@@ -1,64 +1,73 @@
-<html><meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<head><title>Floating Point Numbers Representation Simulator</title> <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="main.css"/>
-</head>
 
-<body>
-<div class="page-header" style="margin-left:30px">
-<h3>Floating Point Numbers Representation Simulator</h3>
-</div><div id="navbar" class="list-group">
-<span class="col-md-2">
-<a href="main.html" class="list-group-item">Decimal to Float</a><br/>
-<a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
-<a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
-<ul>
-	<li>Floating Point Numbers Introduction And Format</li>
-	<li>Normalized And Denormalized representation</li>
-	<li>Decimal To Floating Conversion With Example</li>
-	<li>
-		A quick guide on Using The Simulator
-	</li>
-	<li>Click Reset To Clear And Re-enter The Values</li>
-</ul>
-</span>
-</div>
-<span class="col-md-10">
-<span class="col-md-6">
-	<h4>Normalised Representation</h4>
-	<p>In order to represent maximum possible numbers in specified number of bits, <br/>we use normalized representation. In IEEE format we use normalized <br/>representation for all cases when exponent is not equal to ...0000 or 111..11</p><br/>
-	<h5>Exponent coded as biased value</h5>
-	<p>E = Exp - Bias<br/>
-	   Exp : unsigned value denoted by exp<br/>
-	   Bias : Bias value<br/>
-	   In general : Bias = 2^(e-1)-1, where e is number of exponent bits.
-	</p>
-	<h4>Significand coded with implied leading 1</h4>
-	<p>
-		M = 1.xxx...*2
-		xxx...x:bits of frac
-		<br/>Minimum when 000...0 (M = 1.0)<br/>
-		Maximum when 111...1 (M = 2.0 - )
-	</p>
-	</span>
-	<span class="col-md-5">
-	<h4>Denormalized Representation</h4>
-	<p>As zero cannot be represented using normalized representation ,<br/> we use denormalized representation for zero and numbers close to zero<br/> in order to have more accurate results.<br/>
-	In IEEE formay denormalized representation is using only when exp = 000...0<br/>
-	Exponent value E = -Bias + 1<br/>
-	Significand value M = 0.xxx...*2<br/>
-	xxx...x:bits of frac</p>
-	<h5>Cases</h5>
-	<p>exp=000...0, frac=000...0
-	Represents value 0
-	Note that have distinct values +0 and -0<br/>
-	exp = 000...0, frac = 000...0<br/>
-	Numbers very close to 0.0 Lose precision as get smaller "Gradual underflow"</p></span>
-	<img src="images/normalized.jpg" style="float:center"><br/>
-	<a href="help2.html" type="button" class="btn btn-primary">Back</a>
-	<a href="help4.html" type="button" class="btn btn-primary">Next</a>
-	</span><br/>
-</body>
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <span class="col-md-6">
+            <h4>Normalised Representation</h4>
+            <p>In order to represent maximum possible numbers in specified number of bits, <br/>we use normalized representation. In IEEE format we use normalized <br/>representation for all cases when exponent is not equal to ...0000 or 111..11</p>
+            <br/>
+            <h5>Exponent coded as biased value</h5>
+            <p>E = Exp - Bias<br/>
+               Exp : unsigned value denoted by exp<br/>
+               Bias : Bias value<br/>
+               In general : Bias = 2^(e-1)-1, where e is number of exponent bits.
+            </p>
+            <h4>Significand coded with implied leading 1</h4>
+            <p>
+               M = 1.xxx...*2
+               xxx...x:bits of frac
+               <br/>Minimum when 000...0 (M = 1.0)<br/>
+               Maximum when 111...1 (M = 2.0 - )
+            </p>
+         </span>
+         <span class="col-md-5">
+            <h4>Denormalized Representation</h4>
+            <p>As zero cannot be represented using normalized representation ,<br/> we use denormalized representation for zero and numbers close to zero<br/> in order to have more accurate results.<br/>
+               In IEEE formay denormalized representation is using only when exp = 000...0<br/>
+               Exponent value E = -Bias + 1<br/>
+               Significand value M = 0.xxx...*2<br/>
+               xxx...x:bits of frac
+            </p>
+            <h5>Cases</h5>
+            <p>exp=000...0, frac=000...0
+               Represents value 0
+               Note that have distinct values +0 and -0<br/>
+               exp = 000...0, frac = 000...0<br/>
+               Numbers very close to 0.0 Lose precision as get smaller "Gradual underflow"
+            </p>
+         </span>
+         <img src="images/normalized.jpg" style="float:center"><br/>
+         <a href="help2.html" type="button" class="btn btn-primary">Back</a>
+         <a href="help4.html" type="button" class="btn btn-primary">Next</a>
+      </span>
+      <br/>
+   </body>
 </html>

@@ -1,24 +1,24 @@
-.supscript{
-	position: absolute;
+.supscript {
+    position: absolute;
     bottom: 0;
     right: 0;
     z-index: 10;
-    text-align:right;
-    vertical-align:bottom;
+    text-align: right;
+    vertical-align: bottom;
 }
-#regmemory td{
-	border:1px solid #CCCCCC;
-    width:45px;
-    height:65px;
-    text-align:center;
-    vertical-align:middle;
-    position:relative;
+#regmemory td {
+    border: 1px solid #CCCCCC;
+    width: 45px;
+    height: 65px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
 }
-#datamemory td{
-	border:1px solid #CCCCCC;
-    width:45px;
-    height:65px;
-    text-align:center;
-    vertical-align:middle;
-    position:relative;
+#datamemory td {
+    border: 1px solid #CCCCCC;
+    width: 45px;
+    height: 65px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
 }

@@ -1,59 +1,74 @@
-<html><meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<head><title>Floating Point Numbers Representation Simulator</title> <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="main.css"/>
-</head>
 
-<body><div class="page-header" style="margin-left:30px">
-<h3>Floating Point Numbers Representation Simulator</h3>
-</div>	
-<div id="navbar" class="list-group">
-<span class="col-md-2">
-<a href="main.html" class="list-group-item">Decimal to Float</a><br/>
-<a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
-<a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
-<ul>
-	<li>Floating Point Numbers Introduction And Format</li>
-	<li>Normalized And Denormalized representation</li>
-	<li>Decimal To Floating Conversion With Example</li>
-	<li>
-		A quick guide on Using The Simulator
-	</li>
-	<li>Click Reset To Clear And Re-enter The Values</li>
-</ul>
-</span>
-</div>
-<span class="col-md-10">
-	<h2>What are floating point numbers</h2>
-	<p>As the name implies, floating point numbers are numbers that contain floating decimal points. For example, the numbers 5.5, 0.001, and -2,345.6789 are floating point numbers. Numbers that do not have decimal places are called integers.Computers recognize real numbers that contain fractions as floating point numbers. When a calculation includes a floating point number, it is called a "floating point calculation." Older computers used to have a separate floating point unit (FPU) that handled these calculations, but now the FPU is typically built into the computer's CPU.
-	</p>
-	<h2>Floating-Point Format</h2>
-	<p>Computers store floating point numbers in a specific format . As our aim is to maximize the range of numbers that can be stored .FPUs typically represent real numbers in a binary floating-point format. In this format, a real number has three parts: a sign, a significand, and an exponent. The following explaination is in accordance with the standard IEEE format of 32 bit representation .
-	</p>
-	<img src="images/float2.gif"/>
-	<img src="images/float1.gif"/>
-	<table><tr><td>
-	<h2>Sign Bit</h2>
-	<p>
-	-> 1- Bit Long
-	<br/>
-	-> Determines The +ve or -ve number
-	</p></td><td>
-	<h2>Exponent Field</h2>
-	<p>-> 8 - Bits Long
-	   -> Determines The Range Of Numbers That Can be Represented<br/>
-	   -> Increasing The Bits Will Increase The Range, Not Precision<br/>
-	   -> To Cover For -ve Numbers , exp = 127 + real exp <br/>
-	</p></td></tr><tr><td>
-	<h2>Mantissa Field</h2>
-	<p>-> 23 - Bits Long
-	   -> Determines the precision of Numbers<br/>
-	   -> Increasing bits Will Increase precision , not range <br/>
-	   -> More bits ....More The Accuracy <br/>
-	</p></td><td style="float:right"><a href="help2.html" type="button" class="btn btn-primary">Next</a></td></tr></table>
-	
-</span>
-</body>
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <h2>What are floating point numbers</h2>
+         <p>As the name implies, floating point numbers are numbers that contain floating decimal points. For example, the numbers 5.5, 0.001, and -2,345.6789 are floating point numbers. Numbers that do not have decimal places are called integers.Computers recognize real numbers that contain fractions as floating point numbers. When a calculation includes a floating point number, it is called a "floating point calculation." Older computers used to have a separate floating point unit (FPU) that handled these calculations, but now the FPU is typically built into the computer's CPU.
+         </p>
+         <h2>Floating-Point Format</h2>
+         <p>Computers store floating point numbers in a specific format . As our aim is to maximize the range of numbers that can be stored .FPUs typically represent real numbers in a binary floating-point format. In this format, a real number has three parts: a sign, a significand, and an exponent. The following explaination is in accordance with the standard IEEE format of 32 bit representation .
+         </p>
+         <img src="images/float2.gif"/>
+         <img src="images/float1.gif"/>
+         <table>
+            <tr>
+               <td>
+                  <h2>Sign Bit</h2>
+                  <p>
+                     -> 1- Bit Long
+                     <br/>
+                     -> Determines The +ve or -ve number
+                  </p>
+               </td>
+               <td>
+                  <h2>Exponent Field</h2>
+                  <p>-> 8 - Bits Long
+                     -> Determines The Range Of Numbers That Can be Represented<br/>
+                     -> Increasing The Bits Will Increase The Range, Not Precision<br/>
+                     -> To Cover For -ve Numbers , exp = 127 + real exp <br/>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <h2>Mantissa Field</h2>
+                  <p>-> 23 - Bits Long
+                     -> Determines the precision of Numbers<br/>
+                     -> Increasing bits Will Increase precision , not range <br/>
+                     -> More bits ....More The Accuracy <br/>
+                  </p>
+               </td>
+               <td style="float:right"><a href="help2.html" type="button" class="btn btn-primary">Next</a></td>
+            </tr>
+         </table>
+      </span>
+   </body>
 </html>

@@ -1,66 +1,94 @@
+
+
 <html>
-<meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<head><title>Floating Point Numbers Representation Simulator</title> <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="main.css"/>
-</head>
-
-<body>
-<div class="page-header">
-<h3 style="text-align:center">Floating Point Numbers Representation Simulator</h3>
-</div>	<div id="navbar" class="list-group">
-<span class="col-md-2"><a href="main.html" class="list-group-item disabled">Decimal to Float</a><br/>
-<ul>
-	<li>Decimal to 8-bit Binary Floating point Normalized rep.</li>
-	<li>Enter The Decimal number to be Converted</li>
-	<li>Then Enter The Number of Exp Bits in Range (1,6)</li>
-	<li>Click On Submit To Get Results
-	</li>
-	<li>Click Reset To Clear And Re-enter The Values</li>
-</ul>
-<a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
-<a href="help.html" class="list-group-item">Quick Tutorial</a><br/>
-</span>
-</div>
-<span class="col-md-10">
-<form>
-<label>Enter the Decimal Number </label>
-<input type="number" step="any" id="number" required/><br/>
-<label>Number of bits for Exponents </label>
-<input type="number" id="expolength" max="6" min="1" required/><br/>
-<input type="button" class="btn btn-primary" value="Submit" name="submit" onclick="convert();"/>
-<input type="button" class="btn btn-primary" value="Reset" onclick="clearall();"/><br/>
-</form>
-<div id="resultdiv">
-<table id="binaryrep"><tr><td style="padding:10px">
-<label><h2>8-bit Representation</h2>
-<table id="bit8" border="1" style="padding:10px"><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table></label>
-<label>Integral</label><input id="integral" type="text" readonly/><br/>
-<label>Fractional</label><input id="fractional" type="text"readonly/><br/>
-<label>Binary Representation</label><input id="binarynum" type="text" readonly/><br/>
-<label>Normalized</label><input id="normalized" type="text" readonly/><br/>
-<label>Mantiss</label><input id="mantiss" type="text" readonly/><br/>
-<label>Sign</label><input id="sign" type="text" readonly/><br/>
-<label>Expone</label><input id="expone" type="text" readonly/><br/>
-<label>Bias</label><input id="bias" type="text" readonly/><br/>
-</td><td>
-
-<label><h3>Inferences</h3></label>
-	<label>Max  <span id="max"></span></label><br/>
-	<label>Min  <span id="min"></span></label> 
-<label><h3>Range Of </h3></label>
-	<label><span id="positiveRange"></span>  TO  <span id="negativeRange"></span><label>
-<label><h3> Errors and Remarks </h3></label>
-<label><p>The Number <span id="error0"> </span> be represented correctly with given specifications.</p></label>
-<label><ul>
-	<li id="error1"></li>
-	<li id="error2"></li>
-</ul></label>
-</td></tr></table>
-</div>
-</span>
-</body>
-<script type="text/javascript" src="main.js"></script>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header">
+         <h3 style="text-align:center">Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item disabled">Decimal to Float</a><br/>
+            <ul>
+               <li>Decimal to 8-bit Binary Floating point Normalized rep.</li><br/>
+               <li>Enter The Decimal number to be Converted</li><br/>
+               <li>Then Enter The Number of Exp Bits in Range (1,6)</li><br/>
+               <li>Click On Submit To Get Results
+               </li><br/>
+               <li>Click Reset To Clear And Re-enter The Values</li><br/>
+            </ul>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item">Quick Tutorial</a><br/>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <form>
+            <label>Enter the Decimal Number </label>
+            <input type="number" step="any" id="number" required/><br/>
+            <label>Number of bits for Exponents </label>
+            <input type="number" id="expolength" max="6" min="1" required/><br/><br/><br/>
+            <input type="button" class="btn btn-primary" value="Submit" name="submit" onclick="convert();"/>
+            <input type="button" class="btn btn-primary" value="Reset" onclick="clearall();"/><br/>
+         </form>
+         <div id="resultdiv">
+            <table id="binaryrep">
+               <tr>
+                  <td style="padding:10px">
+                     <label>
+                        <h2>8-bit Representation</h2>
+                        <table id="bit8" border="1" style="padding:10px">
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                           </tr>
+                        </table>
+                     </label>
+                     <label>Integral</label><input id="integral" type="text" readonly/><br/>
+                     <label>Fractional</label><input id="fractional" type="text"readonly/><br/>
+                     <label>Binary Representation</label><input id="binarynum" type="text" readonly/><br/>
+                     <label>Normalized</label><input id="normalized" type="text" readonly/><br/>
+                     <label>Mantiss</label><input id="mantiss" type="text" readonly/><br/>
+                     <label>Sign</label><input id="sign" type="text" readonly/><br/>
+                     <label>Expone</label><input id="expone" type="text" readonly/><br/>
+                     <label>Bias</label><input id="bias" type="text" readonly/><br/>
+                  </td>
+                  <td>
+                     <label>
+                        <h3>Inferences</h3>
+                     </label>
+                     <label>Max  <span id="max"></span></label><br/>
+                     <label>Min  <span id="min"></span></label>
+                     <label>
+                        <h3>Range of &nbsp;&nbsp;&nbsp;<span id="negativeRange"></span>  TO  <span id="positiveRange"></span></h3>
+                     </label>
+                     <label>
+                        <h3> Errors and Remarks </h3>
+                     </label>
+                     <label>
+                        <ul>
+                           <li>The Number <span id="error0"> </span> be represented correctly with given specifications.</li>
+                           <li id="error1"></li>
+                           <li id="error2"></li>
+                        </ul>
+                     </label>
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </span>
+   </body>
+   <script type="text/javascript" src="main.js"></script>
 </html>

@@ -1,84 +1,92 @@
-<html><meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<head><title>Floating Point Numbers Representation Simulator</title> <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="main.css"/>
-</head>
 
-<body>
-<div class="page-header" style="margin-left:30px">
-<h3>Floating Point Numbers Representation Simulator</h3>
-</div><div id="navbar" class="list-group">
-<span class="col-md-2">
-<a href="main.html" class="list-group-item">Decimal to Float</a><br/>
-<a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
-<a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
-<ul>
-	<li>Floating Point Numbers Introduction And Format</li>
-	<li>Normalized And Denormalized representation</li>
-	<li>Decimal To Floating Conversion With Example</li>
-	<li>
-		A quick guide on Using The Simulator
-	</li>
-	<li>Click Reset To Clear And Re-enter The Values</li>
-</ul>
-</span>
-</div>
-<span class="col-md-10">
-<h4>CONVERTING A DECIMAL NUMBER TO FLOATING POINT NUMBER</h4>
-<p><ul><li>
-	Convert the absolute value of the number to binary, perhaps with a fractional part after the binary point. This can be done by converting the integral and fractional parts separately.
-</li>
-<li>
-	Append x 2^0 to the end of the binary number (which does not change its value).
-</li>
-<li>
-	Normalize the number. Move the binary point so that it is one bit from the left. Adjust the exponent of two so that the value does not change.
-</li>
-<li>
-	Place the mantissa into the mantissa field of the number.Omit the leading one, and fill with zero on the right.
-</li>
-<li>
-	Add the bias to the exponent of two, and place it in the exponent field. The bias 2^(k-1)-1, where k is the number of bits in the exponent field 6.
-	For the eight-bit format, k+3, so the bias is 2^(3-1)-1=3. For IEEE 32-bit, k=8, so the bias is 2^(8-1)-1=127
-</li>
-<li>
-	Set the sign bit,1 for negative, 0 for positive, according to the sign of the original number.
-</li>
-</ul>
-</p>
-<h4>EXAMPLE - CONVERT 2.625 TO 8-BIT FLOATING POINT FORMAT.</h4>
-<div calss="container">
-<div class="jumbotron" style="padding:20px">
-<p style="text-align:centre">
-	<ul><li>
-		A.The integral part is easy, 2<sub>10</sub> = 10<sub>2</sub>. For the fractional part:<br/>
-		0.625 X 2 = 1.25 [1]  Generate 1 and continue with the rest.<br/>
-		0.25 X 2 = 0.5 [0]  Generate 0 and continue.<br/>
-		0.5 X 2 = 1.0 [1]  Generate 1 and nothing remains.<br/>
-		So 0.625<sub>10</sub> = 0.101<sub>2</sub> and 2.625 <sub>10</sub> = 10.101 <sub>2</sub>
-	</li><li>
-		B. Add an exponent part: 10.101<sub>2</sub> = 10.101<sub>2</sub> X 2<sup>0</sup>
-	</li>
-	<li>
-		C. Normalize: 10.101<sub>2</sub> X 2<sup>0</sup> = 1.0101<sub>2</sub> X 2<sup>1</sup>
-	</li>
-	<li>
-		D. Mantissa : 0101
-	</li>
-	<li>
-		E. Exponent : 1 + 3 = 4 = 100 <sub>2</sub>
-	</li>
-	<li>
-		F. Sign bit is 0
-	</li>
-	
-</ul>
-<p>The result is 0 100 0101. Represented as hex, that is 45<sub>16</sub>.</p>
-</p>
-</div>
-</div>
-<a href ="help3.html" type="button" class="btn btn-primary">Back</a>
-</span>
-</body></html>
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <h4>CONVERTING A DECIMAL NUMBER TO FLOATING POINT NUMBER</h4>
+         <p>
+         <ul>
+            <li>
+               Convert the absolute value of the number to binary, perhaps with a fractional part after the binary point. This can be done by converting the integral and fractional parts separately.
+            </li>
+            <li>
+               Append x 2^0 to the end of the binary number (which does not change its value).
+            </li>
+            <li>
+               Normalize the number. Move the binary point so that it is one bit from the left. Adjust the exponent of two so that the value does not change.
+            </li>
+            <li>
+               Place the mantissa into the mantissa field of the number.Omit the leading one, and fill with zero on the right.
+            </li>
+            <li>
+               Add the bias to the exponent of two, and place it in the exponent field. The bias 2^(k-1)-1, where k is the number of bits in the exponent field 6.
+               For the eight-bit format, k+3, so the bias is 2^(3-1)-1=3. For IEEE 32-bit, k=8, so the bias is 2^(8-1)-1=127
+            </li>
+            <li>
+               Set the sign bit,1 for negative, 0 for positive, according to the sign of the original number.
+            </li>
+         </ul>
+         </p>
+         <h4>EXAMPLE - CONVERT 2.625 TO 8-BIT FLOATING POINT FORMAT.</h4>
+         <div calss="container">
+            <div class="jumbotron" style="padding:20px">
+               <p style="text-align:centre">
+               <ul>
+                  <li>
+                     A.The integral part is easy, 2<sub>10</sub> = 10<sub>2</sub>. For the fractional part:<br/>
+                     0.625 X 2 = 1.25 [1]  Generate 1 and continue with the rest.<br/>
+                     0.25 X 2 = 0.5 [0]  Generate 0 and continue.<br/>
+                     0.5 X 2 = 1.0 [1]  Generate 1 and nothing remains.<br/>
+                     So 0.625<sub>10</sub> = 0.101<sub>2</sub> and 2.625 <sub>10</sub> = 10.101 <sub>2</sub>
+                  </li>
+                  <li>
+                     B. Add an exponent part: 10.101<sub>2</sub> = 10.101<sub>2</sub> X 2<sup>0</sup>
+                  </li>
+                  <li>
+                     C. Normalize: 10.101<sub>2</sub> X 2<sup>0</sup> = 1.0101<sub>2</sub> X 2<sup>1</sup>
+                  </li>
+                  <li>
+                     D. Mantissa : 0101
+                  </li>
+                  <li>
+                     E. Exponent : 1 + 3 = 4 = 100 <sub>2</sub>
+                  </li>
+                  <li>
+                     F. Sign bit is 0
+                  </li>
+               </ul>
+               <p>The result is 0 100 0101. Represented as hex, that is 45<sub>16</sub>.</p>
+               </p>
+            </div>
+         </div>
+         <a href ="help3.html" type="button" class="btn btn-primary">Back</a>
+      </span>
+   </body>
+</html>

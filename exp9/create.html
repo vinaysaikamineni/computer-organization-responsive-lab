@@ -1,43 +1,46 @@
+
+
 <html>
-<meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<head><title>Single Cycle MIPS CPU</title> <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="main.css"/>
-</head>
-<body>
-<div class="page-header">
-<h3 style="text-align:center">Single Cycle MIPS CPU</h3>
-</div>
-<div class="container">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div>
-      <ul class="nav navbar-nav">
-        <li><a href="main.html">Home</a></li>
-        <li><a href="instruction.html">Instruction Set</a></li>
-        <li><a href="data.html">Data Memory</a></li>
-        <li class="active"><a href="create.html">Create Your Own</a></li>
-        <li><a href="help.html">Help</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-<div class="container">
-<h3>Making Your Own Instruction</h3>
-<p>The following three steps will guide you in creating your own new instructions. Though the hardware is fixed but you can manipulate the control signals to come up with new instructions.
-After creating new instruciotns you can execute them in the simulator and see how they work.</p>
-<h4>STEP # 1</h4>
-<p>You can choose from 2 types of instruction formats. You can either have an instruction with three register values or an instruction with 2 register values and one immediate value. This version supports only 1 instruction of each format simultaneously.
-
-<h4>Choose the type of Instruction</h4>
-<form action="">
-<input type="radio" name="type" value="rtype"/><label>R-TYPE Instruction<br/>Format - myinsrt rx,ry,rz</label>
-<input type="radio" name="type" value="itype"/><label>I-TYPE Instruction<br/>Format - myinsrt rx,ry,imm</label>
-<input type="submit" value="submit">
-</form>
-</div>
-</body>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Single Cycle MIPS CPU</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header">
+         <h3 style="text-align:center">Single Cycle MIPS CPU</h3>
+      </div>
+      <div class="container">
+         <nav class="navbar navbar-default">
+            <div class="container-fluid">
+               <div>
+                  <ul class="nav navbar-nav">
+                     <li><a href="main.html">Home</a></li>
+                     <li><a href="instruction.html">Instruction Set</a></li>
+                     <li><a href="data.html">Data Memory</a></li>
+                     <li class="active"><a href="create.html">Create Your Own</a></li>
+                     <li><a href="help.html">Help</a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </div>
+      <div class="container">
+         <h3>Making Your Own Instruction</h3>
+         <p>The following three steps will guide you in creating your own new instructions. Though the hardware is fixed but you can manipulate the control signals to come up with new instructions.
+            After creating new instruciotns you can execute them in the simulator and see how they work.
+         </p>
+         <h4>STEP # 1</h4>
+         <p>You can choose from 2 types of instruction formats. You can either have an instruction with three register values or an instruction with 2 register values and one immediate value. This version supports only 1 instruction of each format simultaneously.
+         <h4>Choose the type of Instruction</h4>
+         <form action="">
+            <input type="radio" name="type" value="rtype"/><label>R-TYPE Instruction<br/>Format - myinsrt rx,ry,rz</label>
+            <input type="radio" name="type" value="itype"/><label>I-TYPE Instruction<br/>Format - myinsrt rx,ry,imm</label>
+            <input type="submit" value="submit">
+         </form>
+      </div>
+   </body>
 </html>

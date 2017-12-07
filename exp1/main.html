@@ -1,161 +1,185 @@
-<html><meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-	<head><title>Integer Arithmetic</title></head>
-	 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="main.css">
-	<body>
-	<div class="page-header"><h1 style="text-align:center">Integer Arithmetic</h1></div>
-	<span class="col-md-4">
-    <div id="navbar" class="btn-group-vertical">
-	 <input name="Add" value="Add" type="button" id="add" onclick="add();" class="btn btn-primary"></input><br/>
-    <input name="Reset" value="Reset" type="button" id="add" onclick="clearall();" class="btn btn-primary"></input><br/>
-	<a href="5bit.html" type="button" id="add" onclick="clearal();" class="btn btn-primary">5-bit</a><br/>
-	</div>
-    <div id="result">
-<h2>Results</h2>
-<table border="2" cellspacing="1" id="resulttable"> 
-    <tr><td>Binary Rep</td><td></td><td style="display:none">overflow</td></tr>
-    <tr><td>2's comp</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
-    <tr><td>1's comp</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
-    <tr><td>Unsigned</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
-    <tr><td>Signed</td><td></td><td  class="label label-warning" style="display:none">overflow</td></tr>
-</table>
-</div>
 
-    </span>
-    <span class="col-md-8">
-        <span style="float:right;margin-right:100px">
-        <a href="help.html" type="button" id="add" onclick="clearal();" class="btn btn-danger">help</a><br/></span>
-    <div id="bit">
-        <table border="2" cellspacing="40" id="bittable" class="table-striped">
-    <tr>
-        <th>Binary Rep</th>
-        <th>2's COMP</th>
-        <th>1's COMP</th>
-        <th>Unsigned</th>
-        <th>Signed</th>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr0" value="0">
-        <td>0000</td>
-        <td>0</td>
-        <td>+0</td>
-        <td>0</td>
-        <td>+0</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr1" value="1">
-        <td>0001</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr2" value="2">
-        <td>0010</td>
-        <td>2</td>
-        <td>2</td>
-        <td>2</td>
-        <td>2</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>0011</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr4" value="4">
-        <td>0100</td>
-        <td>4</td>
-        <td>4</td>
-        <td>4</td>
-        <td>4</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr5" value="5">
-        <td>0101</td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr6" value="6">
-        <td>0110</td>
-        <td>6</td>
-        <td>6</td>
-        <td>6</td>
-        <td>6</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr7" value="7">
-        <td>0111</td>
-        <td>7</td>
-        <td>7</td>
-        <td>7</td>
-        <td>7</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr8" value="8">
-        <td>1000</td>
-        <td>-8</td>
-        <td>-7</td>
-        <td>8</td>
-        <td>-0</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1001</td>
-        <td>-7</td>
-        <td>-6</td>
-        <td>9</td>
-        <td>-1</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1010</td>
-        <td>-6</td>
-        <td>-5</td>
-        <td>10</td>
-        <td>-2</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1011</td>
-        <td>-5</td>
-        <td>-4</td>
-        <td>11</td>
-        <td>-3</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1100</td>
-        <td>-4</td>
-        <td>-3</td>
-        <td>12</td>
-        <td>-4</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1101</td>
-        <td>-3</td>
-        <td>-2</td>
-        <td>13</td>
-        <td>-5</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1110</td>
-        <td>-2</td>
-        <td>-1</td>
-        <td>14</td>
-        <td>-6</td>
-    </tr>
-    <tr onclick="changeColor(this)" id="tr3" value="3">
-        <td>1111</td>
-        <td>-1</td>
-        <td>-0</td>
-        <td>15</td>
-        <td>-7</td>
-    </tr>
-</table>
-</div>
-</span>
-</body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	<script src="main.js"></script>
-	
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Integer Arithmetic</title>
+   </head>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="main.css">
+   <body>
+      <div class="page-header">
+         <h1 style="text-align:center">INTEGER ARITHMETIC</h1>
+      </div>
+      <span class="col-md-4">
+         <div id="navbar" class="btn-group-vertical">
+            <input name="Add" value="ADD" type="button" id="add" onclick="add();" class="btn btn-primary"></input><br/>
+            <input name="Reset" value="RESET" type="button" id="add" onclick="clearall();" class="btn btn-primary"></input><br/>
+            <a href="5bit.html" type="button" id="add" onclick="clearal();" class="btn btn-primary">Switch to 5-bit</a><br/>
+         </div>
+         <div id="result">
+            <h2>Results</h2>
+            <table border="2" cellspacing="1" id="resulttable">
+               <tr>
+                  <td>Binary Rep</td>
+                  <td></td>
+                  <td style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>2's comp</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>1's comp</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>Unsigned</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>Signed</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+            </table>
+         </div>
+      </span>
+      <span class="col-md-8">
+         <span style="float:right;margin-right:100px">
+         <a href="help.html" type="button" id="add" onclick="clearal();" class="btn btn-danger">HELP</a><br/></span>
+         <div id="bit">
+            <table border="2" cellspacing="40" id="bittable" class="table-striped">
+               <tr>
+                  <th>Binary Rep</th>
+                  <th>2's COMP</th>
+                  <th>1's COMP</th>
+                  <th>UNSIGNED</th>
+                  <th>SIGNED</th>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr0" value="0">
+                  <td>0000</td>
+                  <td>0</td>
+                  <td>+0</td>
+                  <td>0</td>
+                  <td>+0</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr1" value="1">
+                  <td>0001</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr2" value="2">
+                  <td>0010</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>0011</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr4" value="4">
+                  <td>0100</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr5" value="5">
+                  <td>0101</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr6" value="6">
+                  <td>0110</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr7" value="7">
+                  <td>0111</td>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr8" value="8">
+                  <td>1000</td>
+                  <td>-8</td>
+                  <td>-7</td>
+                  <td>8</td>
+                  <td>-0</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1001</td>
+                  <td>-7</td>
+                  <td>-6</td>
+                  <td>9</td>
+                  <td>-1</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1010</td>
+                  <td>-6</td>
+                  <td>-5</td>
+                  <td>10</td>
+                  <td>-2</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1011</td>
+                  <td>-5</td>
+                  <td>-4</td>
+                  <td>11</td>
+                  <td>-3</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1100</td>
+                  <td>-4</td>
+                  <td>-3</td>
+                  <td>12</td>
+                  <td>-4</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1101</td>
+                  <td>-3</td>
+                  <td>-2</td>
+                  <td>13</td>
+                  <td>-5</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1110</td>
+                  <td>-2</td>
+                  <td>-1</td>
+                  <td>14</td>
+                  <td>-6</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1111</td>
+                  <td>-1</td>
+                  <td>-0</td>
+                  <td>15</td>
+                  <td>-7</td>
+               </tr>
+            </table>
+         </div>
+      </span>
+   </body>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	<script src="main.js"></script>
 </html>

@@ -18,6 +18,7 @@ td {
 }
 #resulttable td {
     color: #330000;
+    width: 100px;
     padding: 5px;
 }
 /*body{

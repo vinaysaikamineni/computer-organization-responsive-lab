@@ -89,7 +89,7 @@ function changeColor(o) {
 		signed.push($(o).find("td:nth-child(5)").html());
 		var x = document.getElementById("tr2");
 		for (var i = 0; i < binary.length; i++) {
-				selected[i].style.backgroundColor = '#FA8072';
+				selected[i].style.backgroundColor = '#F08080';
 		}
 };
 //This function converts decimal value to binary value and appends zero
@@ -136,19 +136,19 @@ function add() {
 		var onestrig = 0;
 		$('#bittable tr').each(function() {
 				if (parseInt($(this).find("td:nth-child(4)").html(), 10) == unsignedsum) {
-						$(this).context.cells[3].style.backgroundColor = '#31bc86';
-						$(this).context.cells[0].style.backgroundColor = '#31bc86';
+						$(this).context.cells[3].style.backgroundColor = '#98FB98';
+						$(this).context.cells[0].style.backgroundColor = '#98FB98';
 				};
 				if (parseInt($(this).find("td:nth-child(2)").html(), 10) == twoscompsum) {
-						$(this).context.cells[1].style.backgroundColor = '#31bc86';
+						$(this).context.cells[1].style.backgroundColor = '#98FB98';
 
 				};
 				if ((parseInt($(this).find("td:nth-child(3)").html(), 10) == onescompsum) && !onestrig) {
-						$(this).context.cells[2].style.backgroundColor = '#31bc86';
+						$(this).context.cells[2].style.backgroundColor = '#98FB98';
 						onestrig++;
 				};
 				if ((parseInt($(this).find("td:nth-child(5)").html(), 10) == signedsum) && !signedtrig) {
-						$(this).context.cells[4].style.backgroundColor = '#31bc86';
+						$(this).context.cells[4].style.backgroundColor = '#98FB98';
 						signedtrig++;
 				};
 		})

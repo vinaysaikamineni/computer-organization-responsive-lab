@@ -1,0 +1,839 @@
+#+TITLE:Floating Point Representation experiment exp-2
+#+AUTHOR: VLEAD
+#+DATE: [2017-06-21 WED]
+#+SETUPFILE: ../../org-templates/level-2.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil'
+
+* Introduction
+ + This template shows Floating Point Representation experiment
+ + This converts the given number with given number of exponent bits into Floating point representation of numbers.
+   The input is broken into integral and fractional part.The binary representation of each part is found.
+   The two parts are then combined and normalized form is found.The exponent, Mantissa, Sign and bias are also given out.
+ 
+* Code and narration 
+** main page HTML
+#+BEGIN_SRC  html :tangle /templates/exp2/main.html :eval no :noweb yes
+
+<!DOCTYPE html>
+
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header">
+         <h3 style="text-align:center">Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item disabled">Decimal to Float</a><br/>
+            <ul>
+               <li>Decimal to 8-bit Binary Floating point Normalized rep.</li><br/>
+               <li>Enter The Decimal number to be Converted</li><br/>
+               <li>Then Enter The Number of Exp Bits in Range (1,6)</li><br/>
+               <li>Click On Submit To Get Results
+               </li><br/>
+               <li>Click Reset To Clear And Re-enter The Values</li><br/>
+            </ul>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item">Quick Tutorial</a><br/>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <form>
+            <label>Enter the Decimal Number </label>
+            <input type="number" step="any" id="number" required/><br/>
+            <label>Number of bits for Exponents </label>
+            <input type="number" id="expolength" max="6" min="1" required/><br/><br/><br/>
+            <input type="button" class="btn btn-primary" value="Submit" name="submit" onclick="convert();"/>
+            <input type="button" class="btn btn-primary" value="Reset" onclick="clearall();"/><br/>
+         </form>
+         <div id="resultdiv">
+            <table id="binaryrep">
+               <tr>
+                  <td style="padding:10px">
+                     <label>
+                        <h2>8-bit Representation</h2>
+                        <table id="bit8" border="1" style="padding:10px">
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                           </tr>
+                        </table>
+                     </label>
+                     <label>Integral</label><input id="integral" type="text" readonly/><br/>
+                     <label>Fractional</label><input id="fractional" type="text"readonly/><br/>
+                     <label>Binary Representation</label><input id="binarynum" type="text" readonly/><br/>
+                     <label>Normalized</label><input id="normalized" type="text" readonly/><br/>
+                     <label>Mantiss</label><input id="mantiss" type="text" readonly/><br/>
+                     <label>Sign</label><input id="sign" type="text" readonly/><br/>
+                     <label>Expone</label><input id="expone" type="text" readonly/><br/>
+                     <label>Bias</label><input id="bias" type="text" readonly/><br/>
+                  </td>
+                  <td>
+                     <label>
+                        <h3>Inferences</h3>
+                     </label>
+                     <label>Max  <span id="max"></span></label><br/>
+                     <label>Min  <span id="min"></span></label>
+                     <label>
+                        <h3>Range of &nbsp;&nbsp;&nbsp;<span id="negativeRange"></span>  TO  <span id="positiveRange"></span></h3>
+                     </label>
+                     <label>
+                        <h3> Errors and Remarks </h3>
+                     </label>
+                     <label>
+                        <ul>
+                           <li>The Number <span id="error0"> </span> be represented correctly with given specifications.</li>
+                           <li id="error1"></li>
+                           <li id="error2"></li>
+                        </ul>
+                     </label>
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </span>
+   </body>
+   <script type="text/javascript" src="main.js"></script>
+</html>
+
+#+END_SRC
+
+** float page HTML
+#+BEGIN_SRC  html :tangle /templates/exp2/float.html :eval no :noweb yes
+
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header">
+         <h3 style="text-align:center">Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item disabled">Floating Point Numbers</a><br/>
+            <ul>
+               <li>Decimal to 5-bit Binary Floating point Normalized rep.</li><br/>
+               <li>Enter The Decimal number to be Converted</li><br/>
+               <li>
+                  Then Table Shows All The Numbers That Can be accuratly represented
+               </li><br/>
+               <li>Click On Submit To Get The Representation</li><br/>
+               <li>
+                  If the Number IS Not Accurately Representable, It is Rounded off
+               </li><br/>
+            </ul>
+            <a href="help.html" class="list-group-item">Quick Tutorial</a><br/>
+         </span>
+         <span class="col-md-4">
+            <div id="header">
+               <h3>ENTER THE DECIMAL NUMBER</h3>
+               <input type="number" step="any" max="3.875" min="-3.875" id="decimal"></input><br/><br/><br/>
+               <input type="button" class="btn btn-primary" value="Submit" onclick="convertfloat()" />
+               <input type="button" class="btn btn-primary" value="Reset" onclick="clearall()"/><br/>
+            </div>
+            <br/>
+            <canvas id="myCanvas" width="400" height="400"></canvas>
+            <table id="accuracytable" border="1" class="table-stripped">
+               <tr>
+                  <td style="padding:5px">No-zero Normalized
+                  <td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td style="padding:5px">Abrupt Underflow
+                  <td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td style="padding:5px">Denormalized
+                  <td>
+                  <td></td>
+               </tr>
+            </table>
+         </span>
+         <span class="col-md-6">
+            <div id="table">
+               <h3>REPRESENTABLE NUMBERS IN 5-BIT FORMAT</h3>
+               <table id="resulttable" border="1" class="table-stripped">
+                  <tr>
+                     <th>EXPONENT</th>
+                     <th>MANTISSA</th>
+                     <th>NO-ZERO</th>
+                     <th>ABRUPT</th>
+                     <th>DENORM</th>
+                  </tr>
+                  <tr>
+                     <td>00</td>
+                     <td>00</td>
+                     <td>0.500</td>
+                     <td>0</td>
+                     <td>0</td>
+                  </tr>
+                  <tr>
+                     <td>00</td>
+                     <td>01</td>
+                     <td>0.625</td>
+                     <td>0</td>
+                     <td>0.250</td>
+                  </tr>
+                  <tr>
+                     <td>00</td>
+                     <td>10</td>
+                     <td>0.750</td>
+                     <td>0</td>
+                     <td>0.500</td>
+                  </tr>
+                  <tr>
+                     <td>00</td>
+                     <td>11</td>
+                     <td>0.875</td>
+                     <td>0</td>
+                     <td>0.750</td>
+                  </tr>
+                  <tr>
+                     <td>01</td>
+                     <td>00</td>
+                     <td>1.000</td>
+                     <td>1.000</td>
+                     <td>1.000</td>
+                  </tr>
+                  <tr>
+                     <td>01</td>
+                     <td>01</td>
+                     <td>1.250</td>
+                     <td>1.250</td>
+                     <td>1.250</td>
+                  </tr>
+                  <tr>
+                     <td>01</td>
+                     <td>10</td>
+                     <td>1.500</td>
+                     <td>1.500</td>
+                     <td>1.500</td>
+                  </tr>
+                  <tr>
+                     <td>01</td>
+                     <td>11</td>
+                     <td>1.750</td>
+                     <td>1.750</td>
+                     <td>1.750</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>00</td>
+                     <td>2.000</td>
+                     <td>2.000</td>
+                     <td>2.000</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>01</td>
+                     <td>2.500</td>
+                     <td>2.500</td>
+                     <td>2.500</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>10</td>
+                     <td>3.000</td>
+                     <td>3.000</td>
+                     <td>3.000</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>11</td>
+                     <td>3.500</td>
+                     <td>3.500</td>
+                     <td>3.500</td>
+                  </tr>
+                  <tr>
+                     <td>11</td>
+                     <td>00</td>
+                     <td>INFINITY</td>
+                     <td>INFINITY</td>
+                     <td>INFINITY</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>01</td>
+                     <td>NAN</td>
+                     <td>NAN</td>
+                     <td>NAN</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>10</td>
+                     <td>NAN</td>
+                     <td>NAN</td>
+                     <td>NAN</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>11</td>
+                     <td>NAN</td>
+                     <td>NAN</td>
+                     <td>NAN</td>
+                  </tr>
+               </table>
+               <ul>
+                 <li><div width="10px" height="10px" style="color:#FF8080">Normalized form</div></li>
+                 <li><div width="10px" height="10px" style="color:#0000FF">Denormalized form</div></li>
+               </ul>
+            </div>
+         </span>
+      </div>
+      <br/>
+   </body>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="float.js"></script>
+</html>
+
+
+#+END_SRC
+
+** help page1 HTML
+#+BEGIN_SRC  html :tangle /templates/exp2/help.html :eval no :noweb yes
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <h2>What are floating point numbers</h2>
+         <p>As the name implies, floating point numbers are numbers that contain floating decimal points. For example, the numbers 5.5, 0.001, and -2,345.6789 are floating point numbers. Numbers that do not have decimal places are called integers.Computers recognize real numbers that contain fractions as floating point numbers. When a calculation includes a floating point number, it is called a "floating point calculation." Older computers used to have a separate floating point unit (FPU) that handled these calculations, but now the FPU is typically built into the computer's CPU.
+         </p>
+         <h2>Floating-Point Format</h2>
+         <p>Computers store floating point numbers in a specific format . As our aim is to maximize the range of numbers that can be stored .FPUs typically represent real numbers in a binary floating-point format. In this format, a real number has three parts: a sign, a significand, and an exponent. The following explaination is in accordance with the standard IEEE format of 32 bit representation .
+         </p>
+         <img src="images/float2.gif"/>
+         <img src="images/float1.gif"/>
+         <table>
+            <tr>
+               <td>
+                  <h2>Sign Bit</h2>
+                  <p>
+                     -> 1- Bit Long
+                     <br/>
+                     -> Determines The +ve or -ve number
+                  </p>
+               </td>
+               <td>
+                  <h2>Exponent Field</h2>
+                  <p>-> 8 - Bits Long
+                     -> Determines The Range Of Numbers That Can be Represented<br/>
+                     -> Increasing The Bits Will Increase The Range, Not Precision<br/>
+                     -> To Cover For -ve Numbers , exp = 127 + real exp <br/>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <h2>Mantissa Field</h2>
+                  <p>-> 23 - Bits Long
+                     -> Determines the precision of Numbers<br/>
+                     -> Increasing bits Will Increase precision , not range <br/>
+                     -> More bits ....More The Accuracy <br/>
+                  </p>
+               </td>
+               <td style="float:right"><a href="help2.html" type="button" class="btn btn-primary">Next</a></td>
+            </tr>
+         </table>
+      </span>
+   </body>
+</html>
+
+
+#+END_SRC
+
+
+** help page2 HTML
+#+BEGIN_SRC  html :tangle /templates/exp2/help2.html :eval no :noweb yes
+
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <h4>Consequence #1: Values are unevenly spaced</h4>
+         <p>-> Imagine we only had 6 bits for each floating-point number (1 sign, 3 mantissa, 2 exponent)<br/>
+            -> Means less absolute precision for numbers with larger magnitudes<br/>
+            -> That is why the numbers are more densed near the zero as compared to far away from the number line.
+         </p>
+         <img src="images/uneven.png" style="float:right"/>
+         <h4>Consequence #2: Roundoff errors</h4>
+         <p>- > Our system can represent 6, and it can represent 0.25, but not 5.75
+            <br/>
+            - > So 6 - 0.25 is 6, not 5.75 and if 6 - 0.25 - 0.25 - 0.25 - 0.25 is evaluated left to right, the answer is still 6
+            <br/>
+            - > This is not random Happens exactly the same way every time
+         </p>
+         <br/>
+         <a href="help.html"  type="button" class="btn btn-primary">Back</a>
+         <a href="help3.html"  type="button" class="btn btn-primary">Next</a>
+      </span>
+      <br/>
+   </body>
+</html>
+
+#+END_SRC
+** help page3 HTML
+#+BEGIN_SRC  html :tangle /templates/exp2/help3.html :eval no :noweb yes
+
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <span class="col-md-6">
+            <h4>Normalised Representation</h4>
+            <p>In order to represent maximum possible numbers in specified number of bits, <br/>we use normalized representation. In IEEE format we use normalized <br/>representation for all cases when exponent is not equal to ...0000 or 111..11</p>
+            <br/>
+            <h5>Exponent coded as biased value</h5>
+            <p>E = Exp - Bias<br/>
+               Exp : unsigned value denoted by exp<br/>
+               Bias : Bias value<br/>
+               In general : Bias = 2^(e-1)-1, where e is number of exponent bits.
+            </p>
+            <h4>Significand coded with implied leading 1</h4>
+            <p>
+               M = 1.xxx...*2
+               xxx...x:bits of frac
+               <br/>Minimum when 000...0 (M = 1.0)<br/>
+               Maximum when 111...1 (M = 2.0 - )
+            </p>
+         </span>
+         <span class="col-md-5">
+            <h4>Denormalized Representation</h4>
+            <p>As zero cannot be represented using normalized representation ,<br/> we use denormalized representation for zero and numbers close to zero<br/> in order to have more accurate results.<br/>
+               In IEEE formay denormalized representation is using only when exp = 000...0<br/>
+               Exponent value E = -Bias + 1<br/>
+               Significand value M = 0.xxx...*2<br/>
+               xxx...x:bits of frac
+            </p>
+            <h5>Cases</h5>
+            <p>exp=000...0, frac=000...0
+               Represents value 0
+               Note that have distinct values +0 and -0<br/>
+               exp = 000...0, frac = 000...0<br/>
+               Numbers very close to 0.0 Lose precision as get smaller "Gradual underflow"
+            </p>
+         </span>
+         <img src="images/normalized.jpg" style="float:center"><br/>
+         <a href="help2.html" type="button" class="btn btn-primary">Back</a>
+         <a href="help4.html" type="button" class="btn btn-primary">Next</a>
+      </span>
+      <br/>
+   </body>
+</html>
+
+#+END_SRC
+** help page4 HTML
+#+BEGIN_SRC  html :tangle /templates/exp2/help4.html :eval no :noweb yes
+
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Floating Point Numbers Representation Simulator</title>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="main.css"/>
+   </head>
+   <body>
+      <div class="page-header" style="margin-left:30px">
+         <h3>Floating Point Numbers Representation Simulator</h3>
+      </div>
+      <div id="navbar" class="list-group">
+         <span class="col-md-2">
+            <a href="main.html" class="list-group-item">Decimal to Float</a><br/>
+            <a href="float.html" class="list-group-item">Floating Point Numbers</a><br/>
+            <a href="help.html" class="list-group-item disabled">Quick Tutorial</a><br/>
+            <ul>
+               <li>Floating Point Numbers Introduction And Format</li>
+               <li>Normalized And Denormalized representation</li>
+               <li>Decimal To Floating Conversion With Example</li>
+               <li>
+                  A quick guide on Using The Simulator
+               </li>
+               <li>Click Reset To Clear And Re-enter The Values</li>
+            </ul>
+         </span>
+      </div>
+      <span class="col-md-10">
+         <h4>CONVERTING A DECIMAL NUMBER TO FLOATING POINT NUMBER</h4>
+         <p>
+         <ul>
+            <li>
+               Convert the absolute value of the number to binary, perhaps with a fractional part after the binary point. This can be done by converting the integral and fractional parts separately.
+            </li>
+            <li>
+               Append x 2^0 to the end of the binary number (which does not change its value).
+            </li>
+            <li>
+               Normalize the number. Move the binary point so that it is one bit from the left. Adjust the exponent of two so that the value does not change.
+            </li>
+            <li>
+               Place the mantissa into the mantissa field of the number.Omit the leading one, and fill with zero on the right.
+            </li>
+            <li>
+               Add the bias to the exponent of two, and place it in the exponent field. The bias 2^(k-1)-1, where k is the number of bits in the exponent field 6.
+               For the eight-bit format, k+3, so the bias is 2^(3-1)-1=3. For IEEE 32-bit, k=8, so the bias is 2^(8-1)-1=127
+            </li>
+            <li>
+               Set the sign bit,1 for negative, 0 for positive, according to the sign of the original number.
+            </li>
+         </ul>
+         </p>
+         <h4>EXAMPLE - CONVERT 2.625 TO 8-BIT FLOATING POINT FORMAT.</h4>
+         <div calss="container">
+            <div class="jumbotron" style="padding:20px">
+               <p style="text-align:centre">
+               <ul>
+                  <li>
+                     A.The integral part is easy, 2<sub>10</sub> = 10<sub>2</sub>. For the fractional part:<br/>
+                     0.625 X 2 = 1.25 [1]  Generate 1 and continue with the rest.<br/>
+                     0.25 X 2 = 0.5 [0]  Generate 0 and continue.<br/>
+                     0.5 X 2 = 1.0 [1]  Generate 1 and nothing remains.<br/>
+                     So 0.625<sub>10</sub> = 0.101<sub>2</sub> and 2.625 <sub>10</sub> = 10.101 <sub>2</sub>
+                  </li>
+                  <li>
+                     B. Add an exponent part: 10.101<sub>2</sub> = 10.101<sub>2</sub> X 2<sup>0</sup>
+                  </li>
+                  <li>
+                     C. Normalize: 10.101<sub>2</sub> X 2<sup>0</sup> = 1.0101<sub>2</sub> X 2<sup>1</sup>
+                  </li>
+                  <li>
+                     D. Mantissa : 0101
+                  </li>
+                  <li>
+                     E. Exponent : 1 + 3 = 4 = 100 <sub>2</sub>
+                  </li>
+                  <li>
+                     F. Sign bit is 0
+                  </li>
+               </ul>
+               <p>The result is 0 100 0101. Represented as hex, that is 45<sub>16</sub>.</p>
+               </p>
+            </div>
+         </div>
+         <a href ="help3.html" type="button" class="btn btn-primary">Back</a>
+      </span>
+   </body>
+</html>
+
+#+END_SRC
+** main page CSS
+#+BEGIN_SRC  css :tangle /templates/exp2/main.css :eval no :noweb yes
+body {
+    margin: 0;
+    padding: 0;
+}
+#navbar .col-md-2 {
+    background: #484848;
+    color: white;
+    margin-top: 0;
+    padding: 15px;
+}
+.page-header {
+    margin: 0;
+}
+td {
+    padding: 1px;
+}
+th {
+    color: #330000;
+    padding: 5px;
+}
+#resulttable {
+    text-align: center;
+    padding: 5px;
+}
+#bit8 tr td {
+    color: green;
+}
+#binaryrep td {
+    padding: 20px;
+}
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;
+}
+input {
+    display: inline-block;
+    float: left;
+}
+
+#+END_SRC
+
+** javascript
+#+BEGIN_SRC  js :tangle /templates/exp2/main.js :eval no :noweb yes
+
+document.getElementById('resultdiv').style.display = 'none';
+//hiding resultdiv.
+// function to clear all set variables and settings different results to null
+function clearall() {
+    document.getElementById('resultdiv').style.display = 'none';
+    document.getElementById('integral').value = null;
+    document.getElementById('fractional').value = null;
+    document.getElementById('binarynum').value = null;
+    document.getElementById('sign').value = null;
+    document.getElementById('bias').value = null;
+    document.getElementById('max').innerHTML = null;
+    document.getElementById('min').innerHTML = null;
+    document.getElementById('positiveRange').innerHTML = null;
+    document.getElementById('negativeRange').innerHTML = null;
+    document.getElementById('normalized').value = null;
+    document.getElementById('mantiss').value = null;
+    document.getElementById('expone').value = null;
+    document.getElementById('error0').innerHTML = null;
+    document.getElementById('error1').innerHTML = null;
+    document.getElementById('error2').innerHTML = null;
+}
+//function to convert the input number to normalized form
+//with number of bits for exponent as constraint.
+function convert() {
+    clearall();
+    var number = parseFloat(document.getElementById('number').value);
+    var expolength = parseInt(document.getElementById('expolength').value);
+    var sign = 0;
+    //To check if the input is within constraints
+    if (expolength > 6 || expolength < 1 || isNaN(expolength) || isNaN(number)) {
+        return;
+    }
+    if (number < 0) {
+        sign = 1;
+        number = -number;
+    }
+    document.getElementById('resultdiv').style.display = 'block';
+    var fraclength;
+    var fractional;
+    var integral;
+    var binarystr;
+    var binarynumber;
+    var binaryintegral;
+    var binaryfractional;
+    var bias = Math.pow(2, expolength - 1) - 1;
+    var twopower;
+    var normalized;
+    var expone;
+    var mantiss;
+    var exponebinary;
+    var exponeunderflow = 0;
+    var exponeoverflow = 0;
+    var mantissaerror = 0;
+    //dictionary for max representable numbers.
+    var max = [1.96875, 3.875, 15, 224, 49152, 2147483648];
+    fraclength = 8 - expolength;
+    binarystr = number.toString(2);
+    fractional = number - parseInt(number);
+    integral = parseInt(number);
+    binarynumber = parseFloat(binarystr);
+    binaryintegral = parseInt(binarystr);
+    binaryfractional = (binarystr).substring((binaryintegral.toString()).length + 1, (binaryintegral.toString()).length + 9);
+    document.getElementById('integral').value = binaryintegral;
+    document.getElementById('fractional').value = binaryfractional;
+    if (binaryfractional.length > 0)
+        document.getElementById('binarynum').value = binaryintegral + '.' + binaryfractional;
+    else
+        document.getElementById('binarynum').value = binaryintegral + '.0';
+    document.getElementById('sign').value = sign;
+    document.getElementById('bias').value = bias;
+    document.getElementById('max').innerHTML = max[expolength - 1];
+    document.getElementById('min').innerHTML = -max[expolength - 1];
+    document.getElementById('positiveRange').innerHTML = bias;
+    document.getElementById('negativeRange').innerHTML = -bias;
+    //The case where number is greater than 1.The exponent is always greater than zero.
+    if (number >= 1) {
+        normalized = (binaryintegral.toString()).substring(0, 1) + '.';
+        for (var i = 0; i < fraclength; i++) {
+            if (i <= ((binaryintegral.toString()).length - 2)) {
+                normalized = normalized + (binaryintegral.toString()).substring(i + 1, i + 2);
+            } else {
+                normalized = normalized + binaryfractional.substring(i - binaryintegral.toString().length, i - binaryintegral.toString().length + 1);
+            }
+
+        }
+        //adding zeros to the end of the normalized number if the
+        //length is less than 8-bit.
+        for (var i = normalized.length; i <= fraclength; i++) {
+            normalized = normalized + '0';
+        }
+        twopower = (binaryintegral.toString()).length - 1;
+        normalized = normalized + " X 2^(" + twopower + ")";
+        document.getElementById('normalized').value = normalized;
+    } else {
+        //The case where the number is below 1.Then the exponent can be zero
+        var firstone;
+        for (var i = 2; i < binarystr.length; i++) {
+            if (binarystr[i] == '1') {
+                firstone = i;
+                break;
+            }
+        }
+        normalized = '1.';
+        for (var i = 1; i < fraclength; i++) {
+            normalized = normalized + binarystr.substring(firstone + i, firstone + i + 1);
+        }
+        for (var i = normalized.length; i <= fraclength; i++) {
+            normalized = normalized + '0';
+        }
+        twopower = 1 - firstone;
+        normalized = normalized + " X 2^(" + twopower + ")";
+        document.getElementById('normalized').value = normalized;
+
+    }
+    expone = bias + twopower;
+    if (expone < 0) {
+        exponebinary = '0';
+        exponeunderflow = 1;
+    } else {
+        exponebinary = expone.toString(2);
+    }
+    if (exponebinary.length > expolength) {
+        exponeoverflow = 1;
+    }
+    for (var i = exponebinary.length; i < expolength; i++) {
+        exponebinary = '0' + exponebinary;
+    }
+    mantiss = normalized.substring(2, fraclength + 1);
+    if (mantiss.length < (binarystr.length - (binaryintegral.toString()).length - 1)) {
+        mantissaerror = 1;
+    }
+
+    document.getElementById('mantiss').value = mantiss;
+    document.getElementById('expone').value = expone;
+    var bit8 = document.getElementById('bit8').rows[0];
+    bit8.cells[0].innerHTML = sign;
+    for (var i = 1; i <= expolength; i++) {
+        bit8.cells[i].innerHTML = exponebinary[i - 1];
+        bit8.cells[i].style.color = 'blue';
+    }
+    for (var i = expolength + 1; i < 8; i++) {
+        bit8.cells[i].innerHTML = mantiss[i - expolength - 1];
+        bit8.cells[i].style.color = 'red';
+    }
+    //Checking for errors.
+    if (exponeoverflow || exponeunderflow || mantissaerror) {
+        document.getElementById('error0').innerHTML = 'cannot';
+        if (exponeoverflow)
+            document.getElementById('error2').innerHTML = 'expone overflow';
+        if (exponeunderflow)
+            document.getElementById('error2').innerHTML = 'expone underflow';
+        if (!mantissaerror){
+            document.getElementById('error1').innerHTML = 'Mantissa too small for correct representation, loss'}
+    } else {
+        document.getElementById('error0').innerHTML = 'can';
+    }
+
+}
+
+#+END_SRC
+

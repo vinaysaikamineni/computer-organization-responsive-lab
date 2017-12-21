@@ -1,0 +1,720 @@
+#+TITLE:Integer Arthmetic experiment exp-1
+#+AUTHOR: VLEAD
+#+DATE: [2017-06-21 WED]
+#+SETUPFILE: ../../org-templates/level-2.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil'
+
+* Introduction
+  This template shows Integer arithmetic experiment of computer organization lab
+ 
+ 
+* Code and narration 
+** main page HTML
+#+BEGIN_SRC  html :tangle /templates/exp1/main.html :eval no :noweb yes
+
+<!DOCTYPE html>
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Integer Arithmetic</title>
+   </head>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="main.css">
+   <body>
+      <div class="page-header">
+         <h1 style="text-align:center">INTEGER ARITHMETIC</h1>
+      </div>
+      <span class="col-md-4">
+         <div id="navbar" class="btn-group-vertical">
+            <input name="Add" value="ADD" type="button" id="add" onclick="add();" class="btn btn-primary"></input><br/>
+            <input name="Reset" value="RESET" type="button" id="add" onclick="clearall();" class="btn btn-primary"></input><br/>
+            <a href="5bit.html" type="button" id="add" onclick="clearal();" class="btn btn-primary">Switch to 5-bit</a><br/>
+         </div>
+         <div id="result">
+            <h2>Results</h2>
+            <table border="2" cellspacing="1" id="resulttable">
+               <tr>
+                  <td>Binary Rep</td>
+                  <td></td>
+                  <td style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>2's comp</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>1's comp</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>Unsigned</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>Signed</td>
+                  <td></td>
+                  <td  class="label label-warning" style="display:none">overflow</td>
+               </tr>
+            </table>
+         </div>
+      </span>
+      <span class="col-md-8">
+         <span style="float:right;margin-right:100px">
+         <a href="help.html" type="button" id="add" onclick="clearal();" class="btn btn-danger">HELP</a><br/></span>
+         <div id="bit">
+            <table border="2" cellspacing="40" id="bittable" class="table-striped">
+               <tr>
+                  <th>Binary Rep</th>
+                  <th>2's COMP</th>
+                  <th>1's COMP</th>
+                  <th>UNSIGNED</th>
+                  <th>SIGNED</th>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr0" value="0">
+                  <td>0000</td>
+                  <td>0</td>
+                  <td>+0</td>
+                  <td>0</td>
+                  <td>+0</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr1" value="1">
+                  <td>0001</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr2" value="2">
+                  <td>0010</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>0011</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr4" value="4">
+                  <td>0100</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr5" value="5">
+                  <td>0101</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr6" value="6">
+                  <td>0110</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr7" value="7">
+                  <td>0111</td>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr8" value="8">
+                  <td>1000</td>
+                  <td>-8</td>
+                  <td>-7</td>
+                  <td>8</td>
+                  <td>-0</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1001</td>
+                  <td>-7</td>
+                  <td>-6</td>
+                  <td>9</td>
+                  <td>-1</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1010</td>
+                  <td>-6</td>
+                  <td>-5</td>
+                  <td>10</td>
+                  <td>-2</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1011</td>
+                  <td>-5</td>
+                  <td>-4</td>
+                  <td>11</td>
+                  <td>-3</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1100</td>
+                  <td>-4</td>
+                  <td>-3</td>
+                  <td>12</td>
+                  <td>-4</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1101</td>
+                  <td>-3</td>
+                  <td>-2</td>
+                  <td>13</td>
+                  <td>-5</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1110</td>
+                  <td>-2</td>
+                  <td>-1</td>
+                  <td>14</td>
+                  <td>-6</td>
+               </tr>
+               <tr onclick="changeColor(this)" id="tr3" value="3">
+                  <td>1111</td>
+                  <td>-1</td>
+                  <td>-0</td>
+                  <td>15</td>
+                  <td>-7</td>
+               </tr>
+            </table>
+         </div>
+      </span>
+   </body>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>   <script src="main.js"></script>
+</html>
+
+#+END_SRC
+
+** 5-bit page HTML
+#+BEGIN_SRC  html :tangle /templates/exp1/5bit.html :eval no :noweb yes
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Integer Arithmetic</title>
+   </head>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="main.css">
+   <body>
+      <div class="page-header">
+         <h1 style="text-align:center">Integer Arithmetic</h1>
+      </div>
+      <span class="col-md-4">
+         <div id="navbar"   class="btn-group-vertical">
+            <input name="Add" value="ADD" type="button" id="add" onclick="add();" class="btn btn-primary"></input><br/>
+            <input name="Reset" value="RESET" type="button" id="add" onclick="clearall();" class="btn btn-primary"></input><br/>
+            <a href="main.html" type="button" id="add" onclick="clearall();" class="btn btn-primary">Switch to 4-bit</a><br/>
+         </div>
+         <div id="result">
+            <h2>Results</h2>
+            <table id="resulttable" border="2" cellspacing="1">
+               <tr>
+                  <td>Binary Rep</td>
+                  <td></td>
+                  <td class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>2's comp</td>
+                  <td></td>
+                  <td class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>1's comp</td>
+                  <td></td>
+                  <td class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>Unsigned</td>
+                  <td></td>
+                  <td class="label label-warning" style="display:none">overflow</td>
+               </tr>
+               <tr>
+                  <td>Signed</td>
+                  <td></td>
+                  <td class="label label-warning" style="display:none">overflow</td>
+               </tr>
+            </table>
+         </div>
+      </span>
+      <span class="col-md-8">
+         <span style="float:right;margin-right:100px">
+         <a href="help.html" type="button" id="add" onclick="clearal();" class="btn btn-danger">HELP</a><br/></span>
+         <div id="bit">
+            <table border="1" id="bittable" class="table-striped">
+               <tr>
+                  <th>Binary Rep</th>
+                  <th>2's COMP</th>
+                  <th>1's COMP</th>
+                  <th>UNSIGNED</th>
+                  <th>SIGNED</th>
+               </tr>
+               <tr onclick="changeColor(this)" value="0">
+                  <td>00000</td>
+                  <td>0</td>
+                  <td>+0</td>
+                  <td>0</td>
+                  <td>+0</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00001</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00010</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00011</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00100</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00101</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00110</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>00111</td>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>01000</td>
+                  <td>8</td>
+                  <td>8</td>
+                  <td>8</td>
+                  <td>8</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01001</td>
+                  <td>9</td>
+                  <td>9</td>
+                  <td>9</td>
+                  <td>9</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01010</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01011</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+                  <td>11</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01100</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01101</td>
+                  <td>13</td>
+                  <td>13</td>
+                  <td>13</td>
+                  <td>13</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01110</td>
+                  <td>14</td>
+                  <td>14</td>
+                  <td>14</td>
+                  <td>14</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>01111</td>
+                  <td>15</td>
+                  <td>15</td>
+                  <td>15</td>
+                  <td>15</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>10000</td>
+                  <td>-16</td>
+                  <td>-15</td>
+                  <td>16</td>
+                  <td>-0</td>
+               </tr>
+               <tr onclick="changeColor(this)" >
+                  <td>10001</td>
+                  <td>-15</td>
+                  <td>-14</td>
+                  <td>17</td>
+                  <td>-1</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>10010</td>
+                  <td>-14</td>
+                  <td>-13</td>
+                  <td>18</td>
+                  <td>-2</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>10011</td>
+                  <td>-13</td>
+                  <td>-12</td>
+                  <td>19</td>
+                  <td>-3</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>10100</td>
+                  <td>-12</td>
+                  <td>-11</td>
+                  <td>20</td>
+                  <td>-4</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>10101</td>
+                  <td>-11</td>
+                  <td>-10</td>
+                  <td>21</td>
+                  <td>-5</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>10110</td>
+                  <td>-10</td>
+                  <td>-9</td>
+                  <td>22</td>
+                  <td>-6</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>10111</td>
+                  <td>-9</td>
+                  <td>-8</td>
+                  <td>23</td>
+                  <td>-7</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11000</td>
+                  <td>-8</td>
+                  <td>-7</td>
+                  <td>24</td>
+                  <td>-8</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11001</td>
+                  <td>-7</td>
+                  <td>-6</td>
+                  <td>25</td>
+                  <td>-9</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11010</td>
+                  <td>-6</td>
+                  <td>-5</td>
+                  <td>26</td>
+                  <td>-10</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11011</td>
+                  <td>-5</td>
+                  <td>-4</td>
+                  <td>27</td>
+                  <td>-11</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11100</td>
+                  <td>-4</td>
+                  <td>-3</td>
+                  <td>28</td>
+                  <td>-12</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11101</td>
+                  <td>-3</td>
+                  <td>-2</td>
+                  <td>29</td>
+                  <td>-13</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11110</td>
+                  <td>-2</td>
+                  <td>-1</td>
+                  <td>30</td>
+                  <td>-14</td>
+               </tr>
+               <tr onclick="changeColor(this)">
+                  <td>11111</td>
+                  <td>-1</td>
+                  <td>-0</td>
+                  <td>31</td>
+                  <td>-15</td>
+               </tr>
+            </table>
+         </div>
+      </span>
+   </body>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  <script src="main.js"></script>
+</html>
+                               
+#+END_SRC
+
+** help page HTML
+#+BEGIN_SRC  html :tangle /templates/exp1/help.html :eval no :noweb yes
+
+<html>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <title>Integer Arithmetic</title>
+   </head>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="main.css">
+   <body>
+      <div class="page-header">
+         <h1 style="text-align:center">Integer Arithmetic</h1>
+      </div>
+      <div class="container">
+         <div class="jumbotron">
+            <h3>Basic theory behind the application</h3>
+            <p>This application is basically designed to make the user understand the difference and similarities between different arithmetic representation of integers. The key idea is to be able to observe and understand that some of the arithmetic representation behave isomorhically and hence any of them could be interchangebly used at the backend without the knowledge of the user.</p>
+            <h3>how to use the application</h3>
+            <p>Step 1- Select any two rows that you want to add and press the ADD button.<br/>
+               Step 2- The result will be highlighted as well as displayed in the results table.<br/>
+               OVERFLOW- If the resultant of the two numbers cannot be represented in given number of "bits", then it is an overflow which is indicated by the overflow flags.(The actual values requiring higher number of bits will be displayed in the result table for reference)<br/>
+               Step 3- Press reset button for adding new set of numbers.
+            </p>
+            <a href="main.html" class="btn btn-primary" id="backbutton">Back</a>
+         </div>
+      </div>
+   </body>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>   <script src="main.js"></script>
+</html>
+
+#+END_SRC
+
+** main page CSS
+#+BEGIN_SRC  css :tangle /templates/exp1/main.css :eval no :noweb yes
+table {
+    max-height: 800px;
+    text-align: center;
+}
+#navbar,
+#result {
+    margin-left: 120px;
+}
+#bit {
+    margin-left: 120px;
+}
+th {
+    padding: 12px;
+    color: #330000;
+}
+td {
+    padding: 1px;
+}
+#resulttable td {
+    color: #330000;
+    width: 100px;
+    padding: 5px;
+}
+#+END_SRC
+
+** javascript
+#+BEGIN_SRC  js :tangle /templates/exp1/main.js :eval no :noweb yes
+var binary = [];
+0
+var onescomp = [];
+var twoscomp = [];
+var signed = [];
+var unsigned = [];
+var selected = [];
+var trig = 0;
+var unsignedhigh = 15;
+var signedlow = -7;
+var signedhigh = 7;
+var twoshigh = 7;
+var twoslow = -8;
+var oneshigh = 7;
+var oneslow = -7;
+var bit = 4;
+//This will set variables for 5-bit table
+if (window.location.href.indexOf("5bit") > -1) {
+                unsignedhigh = 31;
+                signedlow = -15;
+                signedhigh = 15;
+                twoshigh = 15;
+                twoslow = -16;
+                oneshigh = 15;
+                oneslow = -15;
+                bit = 5;
+}
+//This function resets all the variables and sets the background of
+//the rows to original color.
+function clearall() {
+                $('#bittable tr').each(function() {
+                                $(this).context.cells[0].style.backgroundColor = '';
+                                $(this).context.cells[1].style.backgroundColor = '';
+                                $(this).context.cells[2].style.backgroundColor = '';
+                                $(this).context.cells[3].style.backgroundColor = '';
+                                $(this).context.cells[4].style.backgroundColor = '';
+                                $(this).context.style.backgroundColor = '';
+                                selected = [];
+                                binary = [];
+                                signed = [];
+                                unsigned = [];
+                                onescomp = [];
+                                twoscomp = [];
+                                signedsum = null;
+                                unsignedsum = null;
+                                onescompsum = null;
+                                twoscompsum = null;
+                                document.getElementById('resulttable').rows[0].cells[2].style.display = 'none';
+                                document.getElementById('resulttable').rows[3].cells[2].style.display = 'none';
+                                document.getElementById('resulttable').rows[4].cells[2].style.display = 'none';
+                                document.getElementById('resulttable').rows[2].cells[2].style.display = 'none';
+                                document.getElementById('resulttable').rows[0].cells[1].innerHTML = null;
+                                document.getElementById('resulttable').rows[1].cells[1].innerHTML = null;
+                                document.getElementById('resulttable').rows[2].cells[1].innerHTML = null;
+                                document.getElementById('resulttable').rows[3].cells[1].innerHTML = null;
+                                document.getElementById('resulttable').rows[4].cells[1].innerHTML = null;
+                })
+                trig = 0;
+}
+//This function changes the color of the selected row in the table.
+function changeColor(o) {
+                if (trig > 0) {
+                                clearall();
+                }
+                //This will make sure that only two of the rows are selected
+                if (selected.length == 2) {
+                                selected[0].style.backgroundColor = '';
+                                selected.shift();
+                                binary.shift();
+                                onescomp.shift();
+                                twoscomp.shift();
+                                signed.shift();
+                                unsigned.shift();
+                }
+                selected.push(o);
+                binary.push($(o).find("td:first").html());
+                twoscomp.push($(o).find("td:nth-child(2)").html());
+                onescomp.push($(o).find("td:nth-child(3)").html());
+                unsigned.push($(o).find("td:nth-child(4)").html());
+                signed.push($(o).find("td:nth-child(5)").html());
+                var x = document.getElementById("tr2");
+                for (var i = 0; i < binary.length; i++) {
+                                selected[i].style.backgroundColor = '#F08080';
+                }
+};
+//This function converts decimal value to binary value and appends zero
+//at the start if required.
+function decbin(value) {
+                var out = value.toString(2);
+                if (out.length < bit) {
+                                for (var i = out.length; i < bit; i++) {
+                                                out = 0 + out;
+                                }
+
+                }
+                return out;
+}
+/* This function adds the signed numbers, unsigned numbers, binary, 1scomplement,
+2scomplement and sets result row of the table to green(if within the range of table)
+or shows overflow.*/
+function add() {
+                var unsigned1, unsigned2;
+                unsignedsum = parseInt(unsigned[0], 10) + parseInt(unsigned[1], 10);
+                signedsum = parseInt(signed[0], 10) + parseInt(signed[1], 10);
+                twoscompsum = parseInt(twoscomp[0], 10) + parseInt(twoscomp[1], 10);
+                onescompsum = parseInt(onescomp[0], 10) + parseInt(onescomp[1], 10);
+                if (isNaN(unsignedsum)) {
+                                return;
+                }
+                if (unsignedsum > unsignedhigh) {
+                                document.getElementById('resulttable').rows[0].cells[2].style.display = 'block';
+                                document.getElementById('resulttable').rows[3].cells[2].style.display = 'block';
+                }
+                if (signedsum > signedhigh || signedsum < signedlow)
+                                document.getElementById('resulttable').rows[4].cells[2].style.display = 'block';
+                if (onescompsum > oneshigh || onescompsum < oneslow)
+                                document.getElementById('resulttable').rows[2].cells[2].style.display = 'block';
+                if (twoscompsum > twoshigh || twoscompsum < twoslow)
+                                document.getElementById('resulttable').rows[1].cells[2].style.display = 'block';
+                document.getElementById('resulttable').rows[0].cells[1].innerHTML = decbin(unsignedsum);
+                document.getElementById('resulttable').rows[1].cells[1].innerHTML = twoscompsum;
+                document.getElementById('resulttable').rows[2].cells[1].innerHTML = onescompsum;
+                document.getElementById('resulttable').rows[3].cells[1].innerHTML = unsignedsum;
+                document.getElementById('resulttable').rows[4].cells[1].innerHTML = signedsum;
+                //x.style.backgroundColor=(x.style.backgroundColor=='#31bc86')?(''):('#31bc86');
+                var signedtrig = 0;
+                var onestrig = 0;
+                $('#bittable tr').each(function() {
+                                if (parseInt($(this).find("td:nth-child(4)").html(), 10) == unsignedsum) {
+                                                $(this).context.cells[3].style.backgroundColor = '#98FB98';
+                                                $(this).context.cells[0].style.backgroundColor = '#98FB98';
+                                };
+                                if (parseInt($(this).find("td:nth-child(2)").html(), 10) == twoscompsum) {
+                                                $(this).context.cells[1].style.backgroundColor = '#98FB98';
+
+                                };
+                                if ((parseInt($(this).find("td:nth-child(3)").html(), 10) == onescompsum) && !onestrig) {
+                                                $(this).context.cells[2].style.backgroundColor = '#98FB98';
+                                                onestrig++;
+                                };
+                                if ((parseInt($(this).find("td:nth-child(5)").html(), 10) == signedsum) && !signedtrig) {
+                                                $(this).context.cells[4].style.backgroundColor = '#98FB98';
+                                                signedtrig++;
+                                };
+                })
+                trig++;
+};
+#+END_SRC
+

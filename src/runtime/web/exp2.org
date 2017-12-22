@@ -832,7 +832,7 @@ function convert() {
             document.getElementById('error2').style.display = null;
             document.getElementById('error2').innerHTML = 'expone underflow';}
         if (!mantissaerror){
-            document.getElementById('error1).style.display = null;
+            document.getElementById('error1').style.display = null;
             document.getElementById('error1').innerHTML = 'Mantissa too small for correct representation, loss'}
     } else {
         document.getElementById('error0').innerHTML = 'can';

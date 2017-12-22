@@ -562,7 +562,7 @@ td {
 }
 #resulttable td {
     color: #330000;
-    width: 100px;
+    width: 150px;
     padding: 5px;
 }
 #+END_SRC

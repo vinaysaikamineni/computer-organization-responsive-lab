@@ -29,6 +29,8 @@ function clearall() {
     document.getElementById('error0').innerHTML = null;
     document.getElementById('error1').innerHTML = null;
     document.getElementById('error2').innerHTML = null;
+    document.getElementById('error1').style.display = 'none';
+    document.getElementById('error2').style.display = 'none';
 }
 //function to convert the input number to normalized form
 //with number of bits for exponent as constraint.
@@ -157,10 +159,17 @@ function convert() {
     if (exponeoverflow || exponeunderflow || mantissaerror) {
         document.getElementById('error0').innerHTML = 'cannot';
         if (exponeoverflow)
+        {
+            document.getElementById('error2').style.display = null;
             document.getElementById('error2').innerHTML = 'expone overflow';
+        }
         if (exponeunderflow)
+        {
+            document.getElementById('error2').style.display = null;
             document.getElementById('error2').innerHTML = 'expone underflow';
+        }
         if (!mantissaerror){
+          document.getElementById('error1').style.display = null;
             document.getElementById('error1').innerHTML = 'Mantissa too small for correct representation, loss'}
     } else {
         document.getElementById('error0').innerHTML = 'can';
